@@ -1,4 +1,6 @@
 
+// test //
+
 package gnoctua.Controlador;
 
 import gnoctua.Modelo.Articulo;
