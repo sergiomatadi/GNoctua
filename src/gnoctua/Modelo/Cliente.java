@@ -1,13 +1,16 @@
 
 package gnoctua.Modelo;
 
-public class Cliente {
+public abstract class Cliente {
     
-    private String nombre;
-    private String domicilio;
-    private String email;
-    private String nif;  
+    protected String nombre;
+    protected String domicilio;
+    protected String email;
+    protected String nif; 
 
+   /*
+    Constructor
+    */
     public Cliente(String nombre, String domicilio, String email, String nif) {
         this.nombre = nombre;
         this.domicilio = domicilio;
@@ -15,6 +18,10 @@ public class Cliente {
         this.nif = nif;
     }
 
+    /*
+    Getter y Setter
+    */
+    
     public String getNombre() {
         return nombre;
     }

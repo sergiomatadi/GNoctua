@@ -3,6 +3,8 @@ package gnoctua.Vista;
 
 import gnoctua.Modelo.Articulo;
 import gnoctua.Modelo.Cliente;
+import gnoctua.Modelo.ClienteEstandard;
+import gnoctua.Modelo.ClientePremium;
 import java.util.List;
 import java.util.Scanner;
 
@@ -35,7 +37,16 @@ public class Interface {
         String email = sc.nextLine();
         System.out.println("DNI:");
         String nif = sc.nextLine();
-        return new Cliente(nombre, domicilio, email, nif);
+        System.out.println("Tipo de cliente:");
+        System.out.println("1. Estandard");
+        System.out.println("2. Premium");
+        String tipoCliente = sc.nextLine();
+        if (tipoCliente == "2") {
+            return new ClientePremium(nombre, domicilio, email, nif, "premium");
+        }else{
+            return new ClienteEstandard(nombre, domicilio, email, nif, "estandard");
+        }
+    
     }
     public void mostrarClientes(List<Cliente>clientes){
         System.out.println("Datos clientes");
