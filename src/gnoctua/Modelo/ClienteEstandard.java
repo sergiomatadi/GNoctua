@@ -31,3 +31,4 @@ public class ClienteEstandard extends Cliente {
         return "Cliente{" + "nombre=" + nombre + ", domicilio=" + domicilio + ", email=" + email + ", nif=" + nif + "tipo de cliente=" + tipoCliente + " }";
     }
 }
+  //coment//
