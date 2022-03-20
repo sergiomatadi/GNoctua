@@ -17,7 +17,7 @@ public class Datos {
     } 
     public Boolean existeClienteByNif(String nif) {
          for (int i = 0; i < datos.size(); i++) {
-            if(datos.get(i).getNif() == nif) {
+            if(datos.get(i).getNif().equals(nif)) {
                 return true;
             }
         }
@@ -26,7 +26,7 @@ public class Datos {
     
     public Cliente getClienteByNif(String nif){
         for (int i = 0; i < datos.size(); i++) {
-            if(datos.get(i).getNif() == nif) {
+            if(datos.get(i).getNif().equals(nif)) {
                 return datos.get(i);
             }
         }
@@ -42,8 +42,8 @@ public class Datos {
     }
     
     public Articulo getArticuloByCodigo(String codigo) {
-         for (int i = 0; i < art.size(); i++) {
-            if(art.get(i).getCodigo() == codigo) {
+        for (int i = 0; i < art.size(); i++) {
+            if(art.get(i).getCodigo().equals(codigo)) {
                 return art.get(i);
             }
         }

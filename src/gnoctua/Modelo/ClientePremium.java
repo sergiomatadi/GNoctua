@@ -56,6 +56,6 @@ public class ClientePremium extends Cliente{
     */
     @Override
     public String toString() {
-        return "Cliente{ " + "nombre=" + nombre + ", domicilio=" + domicilio + ", email=" + email + ", nif=" + nif + "tipo de cliente=" + tipoCliente + ", cuota=" + cuota + ", descuentoEnvio=" + descuentoEnvio +" }";
+        return "Cliente{ nombre=" + nombre + ", domicilio=" + domicilio + ", email=" + email + ", nif=" + nif + ", tipo de cliente=" + tipoCliente + ", cuota=" + cuota + ", descuentoEnvio=" + descuentoEnvio +" }";
     }
 }

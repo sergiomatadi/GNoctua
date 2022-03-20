@@ -90,25 +90,26 @@ public class Interface {
         System.out.println(text);
     }  
     
-    public Pedido introducirPedido(){
+    public String introducirNifCliente() {
+        Scanner sc = new Scanner (System.in);
+        System.out.println("Nif del cliente");
+        String nifCliente = sc.nextLine();
+        return nifCliente;
+    }
+    
+    public String introducirCodigoArticulo() {
+        Scanner sc = new Scanner (System.in);
+        System.out.println("Codigo de artículo");
+        String codigoArticulo = sc.nextLine();
+        return codigoArticulo;
+    }
+    
+    public Pedido introducirPedido(Cliente cliente, Articulo articulo){
         Scanner sc = new Scanner (System.in);
         System.out.println("Numero de pedido:");
         String numero = sc.nextLine();
         System.out.println("Cantidad");
         String cantidad =sc.nextLine();
-        System.out.println("Nif del cliente");
-        String nifCliente = sc.nextLine();
-        Cliente cliente;
-        //datos está vacio siempre (Hay que mirarlo bien)
-        if( datos.existeClienteByNif(nifCliente) ) {
-            cliente = datos.getClienteByNif(nifCliente);
-        }else{
-            cliente = lecturaCliente();
-            datos.agregarCliente(cliente);
-        }
-        System.out.println("Codigo de artículo");
-        String codigoArticulo = sc.nextLine();
-        Articulo articulo = datos.getArticuloByCodigo(codigoArticulo);
         System.out.println("Fecha de pedido");
         String fechaPedido = sc.nextLine();
         System.out.println("Hora de pedido");
@@ -117,5 +118,12 @@ public class Interface {
         Boolean enviado = sc.nextLine() == "true" ? true : false;;
         return new Pedido (Integer.parseInt(numero), Integer.parseInt(cantidad), cliente, articulo, fechaPedido, hora, enviado );
                
+    }
+    
+    public void mostrarPedidos(List<Pedido>pedidos){
+        System.out.println("Pedidos");
+        for(Pedido pedido: pedidos){
+            System.out.println(pedido);
+        }
     }
 }
