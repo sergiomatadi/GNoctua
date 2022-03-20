@@ -34,7 +34,7 @@ public class ClienteEstandard extends Cliente {
     */
     @Override
     public String toString() {
-        return "Cliente{" + "nombre=" + nombre + ", domicilio=" + domicilio + ", email=" + email + ", nif=" + nif + "tipo de cliente=" + tipoCliente + " }";
+        return "Cliente{ nombre=" + nombre + ", domicilio=" + domicilio + ", email=" + email + ", nif=" + nif + ", tipo de cliente=" + tipoCliente + " }";
     }
 }
   //coment//
