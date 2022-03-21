@@ -6,6 +6,11 @@ package gnoctua.Modelo;
  *
  */
 
+// Las clases hijas, ClienteEstandard y ClientePremium, implementarán los métodos abstractos indicados.
+//  public abstract String tipoCliente();
+// public abstract float calcAnual();
+// public abstract float descuentoEnv();
+
 public class ClientePremium extends Cliente{  
     
     public String cuota, descuentoEnvio;

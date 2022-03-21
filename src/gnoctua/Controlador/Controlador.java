@@ -7,8 +7,11 @@ import gnoctua.Modelo.ClientePremium;
 import gnoctua.Modelo.Datos;
 import gnoctua.Modelo.Pedido;
 import gnoctua.Vista.Interface;
+import gnoctua.Modelo.Lista;
+import gnoctua.Modelo.ListaCliente;
+import gnoctua.Modelo.ListaPedido;
+import gnoctua.Modelo.ListaArticulo;
 import java.util.List;
-
 
 public class Controlador {
     

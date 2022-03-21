@@ -1,10 +1,6 @@
     
 package gnoctua.Modelo;
 
-/**
- *
- * @author denis
- */
 public class Pedido {
     private int numero;
     private int cantidad; 
