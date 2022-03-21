@@ -1,4 +1,3 @@
-
 package gnoctua.Modelo;
 
 public abstract class Cliente {
@@ -8,13 +7,14 @@ public abstract class Cliente {
     protected String email;
     protected String nif; 
     protected String tipoCliente;
+    
 
-   public abstract String tipoCliente(); 
+   //public abstract String tipoCliente(){}; 
    
- 
    /*
     Constructor
     */
+    public Cliente() {};
     public Cliente(String nombre, String domicilio, String email, String nif, String tipoCliente) {
         this.nombre = nombre;
         this.domicilio = domicilio;
