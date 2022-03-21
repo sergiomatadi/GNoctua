@@ -1,5 +1,7 @@
 package gnoctua.Modelo;
 
+// test 
+
 public class Articulo {
     public String codigo;
     public String descripcion;
