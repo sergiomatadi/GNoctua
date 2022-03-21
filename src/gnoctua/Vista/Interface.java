@@ -17,7 +17,9 @@ public class Interface {
     public int menu(){
         int opc = 0;
     
+    System.out.println("==================");
     System.out.println("Menu opciones:");
+    System.out.println("==================");
     System.out.println("1- Añadir cliente.");
     System.out.println("2- Mostrar cliente:");
     System.out.println("3- Añadir articulo.");
@@ -25,7 +27,9 @@ public class Interface {
     System.out.println("5- Añadir pedido");
     System.out.println("6- Mostrar pedido:");
     System.out.println("7- Salir");
+    System.out.println("==================");
     System.out.println("Opcion:");
+    System.out.println("==================");
     
     
     opc = new Scanner(System.in).nextInt();
