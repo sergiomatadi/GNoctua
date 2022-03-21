@@ -95,7 +95,7 @@ public class Controlador {
            }
         }
         
-        while(opc!=6);
+        while(opc!=7);
     }
     
 }
