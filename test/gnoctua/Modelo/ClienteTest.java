@@ -26,98 +26,44 @@ public class ClienteTest {
         
     }
 
-    @Test
-    public void testSetTipoCliente() {
-        System.out.println("setTipoCliente");
-        String tipoCliente = "";
-        Cliente instance = new ClienteImpl();
-        instance.setTipoCliente(tipoCliente);
-        
-    }
 
     @Test
     public void testGetNombre() {
         System.out.println("getNombre");
-        Cliente instance = new ClienteImpl();
-        String expResult = "";
+        String nombre = "Pedro";
+        Cliente instance = new ClienteEstandard(nombre,"Calle Amor 5", "p@goo.com","34534534G", "estandard");
         String result = instance.getNombre();
-        assertEquals(expResult, result);
+        assertEquals(nombre, result);
         
     }
 
     @Test
     public void testSetNombre() {
         System.out.println("setNombre");
-        String nombre = "";
-        Cliente instance = new ClienteImpl();
+        Cliente instance = new ClienteEstandard("Pedro","Calle Amor 5", "p@goo.com","34534534G", "estandard");
+        String nombre = "Mario";
         instance.setNombre(nombre);
+        assertEquals(nombre, instance.getNombre());
        
     }
 
     @Test
     public void testGetDomicilio() {
         System.out.println("getDomicilio");
-        Cliente instance = new ClienteImpl();
-        String expResult = "";
+        String domicilio = "Calle Falsa 2";
+        Cliente instance = new ClienteEstandard("Pedro","Calle Falsa 2", "p@goo.com","34534534G", "estandard");
         String result = instance.getDomicilio();
-        assertEquals(expResult, result);
+        assertEquals(domicilio, result);
         
     }
 
     @Test
     public void testSetDomicilio() {
-        System.out.println("setDomicilio");
-        String domicilio = "";
-        Cliente instance = new ClienteImpl();
+       System.out.println("setDomicilio");
+        Cliente instance = new ClienteEstandard("Pedro","Calle Amor 5", "p@goo.com","34534534G", "estandard");
+        String domicilio = "Calle Petit 6";
         instance.setDomicilio(domicilio);
-        
-    }
-
-    @Test
-    public void testGetEmail() {
-        System.out.println("getEmail");
-        Cliente instance = new ClienteImpl();
-        String expResult = "";
-        String result = instance.getEmail();
-        assertEquals(expResult, result);
-        
-    }
-
-    @Test
-    public void testSetEmail() {
-        System.out.println("setEmail");
-        String email = "";
-        Cliente instance = new ClienteImpl();
-        instance.setEmail(email);
-        
-    }
-
-    @Test
-    public void testGetNif() {
-        System.out.println("getNif");
-        Cliente instance = new ClienteImpl();
-        String expResult = "";
-        String result = instance.getNif();
-        assertEquals(expResult, result);
-        
-    }
-
-    @Test
-    public void testSetNif() {
-        System.out.println("setNif");
-        String nif = "";
-        Cliente instance = new ClienteImpl();
-        instance.setNif(nif);
-       
-    }
-
-    @Test
-    public void testToString() {
-        System.out.println("toString");
-        Cliente instance = new ClienteImpl();
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
+        assertEquals(domicilio, instance.getDomicilio());
         
     }
 
