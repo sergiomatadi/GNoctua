@@ -1,6 +1,3 @@
-
-// test //
-
 package gnoctua.Controlador;
 
 import gnoctua.Modelo.Articulo;
@@ -52,7 +49,9 @@ public class Controlador {
                 case 1:
                     cliente = vista.lecturaCliente();
                     bd.agregarCliente(cliente);
+                    vista.msg("**********************");
                     vista.msg("Guardado correctamente");
+                    vista.msg("**********************");
                     break;
                 case 2: 
                     List<Cliente> datos = bd.obtenerClientes();
@@ -61,7 +60,9 @@ public class Controlador {
                 case 3:
                     articulo = vista.introducirArticulo();
                     bd.agregarArticulo(articulo);
+                    vista.msg("**********************");
                     vista.msg("Guardado correctamente");
+                    vista.msg("**********************");
                     break;
                 case 4:
                     List<Articulo> art = bd.obtnerArticulo();
@@ -79,15 +80,19 @@ public class Controlador {
                     articulo = bd.getArticuloByCodigo(codigoArticulo);
                     pedido = vista.introducirPedido(cliente, articulo);
                     bd.agregarPedido(pedido);
+                    vista.msg("**********************");
                     vista.msg("Guardado correctamente");
+                    vista.msg("**********************");
                     break;
                 case 6:              
                     List<Pedido> order = bd.obtenerPedido();
                     vista.mostrarPedidos(order);
                     break; 
            
-                case 7:              
+                case 7:  
+                    vista.msg("**********************");
                     vista.msg("Salir de la aplicación");
+                    vista.msg("**********************");
                     break;
            
                 default:
