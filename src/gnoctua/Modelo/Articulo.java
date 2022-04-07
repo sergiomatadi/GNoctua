@@ -1,14 +1,14 @@
 package gnoctua.Modelo;
 
 public class Articulo {
-    public String codigo;
-    public String descripcion;
-    public String precioVenta;
-    public String gastosEnvio;
-    public String tiempoEnvio;
+    private int codigo;
+    private String descripcion;
+    private double precioVenta;
+    private double gastosEnvio;
+    private int tiempoEnvio;
 
   
-    public Articulo(String codigo, String descripcion, String precioVenta, String gastosEnvio, String tiempoEnvio) {
+    public Articulo(int codigo, String descripcion, double precioVenta, double gastosEnvio, int tiempoEnvio) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.precioVenta = precioVenta;
@@ -18,11 +18,11 @@ public class Articulo {
 
 
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
@@ -34,27 +34,27 @@ public class Articulo {
         this.descripcion = descripcion;
     }
 
-    public String getPrecioVenta() {
+    public double getPrecioVenta() {
         return precioVenta;
     }
 
-    public void setPrecioVenta(String precioVenta) {
+    public void setPrecioVenta(double precioVenta) {
         this.precioVenta = precioVenta;
     }
 
-    public String getGastosEnvio() {
+    public double getGastosEnvio() {
         return gastosEnvio;
     }
 
-    public void setGastosEnvio(String gastosEnvio) {
+    public void setGastosEnvio(double gastosEnvio) {
         this.gastosEnvio = gastosEnvio;
     }
 
-    public String getTiempoEnvio() {
+    public int getTiempoEnvio() {
         return tiempoEnvio;
     }
 
-    public void setTiempoEnvio(String tiempoEnvio) {
+    public void setTiempoEnvio(int tiempoEnvio) {
         this.tiempoEnvio = tiempoEnvio;
     }
 

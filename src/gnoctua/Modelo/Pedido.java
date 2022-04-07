@@ -8,8 +8,8 @@ package gnoctua.Modelo;
 public class Pedido {
     private int numero;
     private int cantidad; 
-    private Cliente Cliente;
-    private Articulo Articulo;
+    private Cliente cliente;
+    private Articulo articulo;
     private String fechaPedido;
     private String hora;
     private Boolean enviado;
@@ -19,8 +19,8 @@ public class Pedido {
     public Pedido(int numero, int cantidad, Cliente Cliente, Articulo Articulo, String fechaPedido, String hora, Boolean enviado) {
         this.numero = numero;
         this.cantidad = cantidad;
-        this.Cliente = Cliente;
-        this.Articulo = Articulo;
+        this.cliente = Cliente;
+        this.articulo = Articulo;
         this.fechaPedido = fechaPedido;
         this.hora = hora;
         this.enviado = enviado;
@@ -43,19 +43,19 @@ public class Pedido {
     }
 
     public Cliente getCliente() {
-        return Cliente;
+        return cliente;
     }
 
     public void setCliente(Cliente Cliente) {
-        this.Cliente = Cliente;
+        this.cliente = Cliente;
     }
 
     public Articulo getArticulo() {
-        return Articulo;
+        return articulo;
     }
 
     public void setArticulo(Articulo Articulo) {
-        this.Articulo = Articulo;
+        this.articulo = Articulo;
     }
 
     public String getFechaPedido() {
@@ -87,11 +87,11 @@ public class Pedido {
         String text ="Pedido{"; 
         text += "  Numero=" + numero;
         text += ", Cantidad=" + cantidad;
-        text += ", Cliente nif=" + Cliente.nif;
-        text += ", Cliente nombre=" + Cliente.nombre;
-        text += ", Articulo codigo=" + Articulo.codigo;
-        text += ", Articulo descripcion=" + Articulo.descripcion;
-        text += ", PVPArticulo=" + Articulo.precioVenta;
+        text += ", Cliente nif=" + cliente.nif;
+        text += ", Cliente nombre=" + cliente.nombre;
+        text += ", Articulo codigo=" + articulo.getCodigo();
+        text += ", Articulo descripcion=" + articulo.getDescripcion();
+        text += ", PVPArticulo=" + articulo.getPrecioVenta();
         text += ", FechaPedido=" + fechaPedido;
         text += ", Hora=" + hora;
         text += "}";
