@@ -69,5 +69,5 @@ public class ClienteTest {
 
     public class ClienteImpl extends Cliente {
     }
-    
+
 }
