@@ -79,7 +79,7 @@ public class ClienteDAO {
                         rs.getString("email"),
                         rs.getString("nif"),
                         rs.getString("tipoCliente")
-                );
+                ) {};
             }
             rs.close();
         }
@@ -88,6 +88,50 @@ public class ClienteDAO {
         }
         
         return a;
+    }
+    
+    public boolean update(Cliente a){
+        boolean exito=false;
+        
+        String sql="update Cliente set nombre=?,domicilio=?,nif=?, tipoCliente=? where email=?";
+        try(PreparedStatement stm=con.prepareStatement(sql);){
+            
+            stm.setString(1,a.getNombre());
+            stm.setString(2,a.getDomicilio());
+            stm.setString(3,a.getNif());
+            stm.setString(4,a.getTipoCliente());
+            stm.setString(5,a.getEmail());
+            
+            stm.executeUpdate();
+            
+            exito=true;
+            
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return exito;
+    }
+    
+    public boolean delete(String email){
+        boolean exito=false;
+        
+        String sql="delete from Cliente where email=?";
+        try(PreparedStatement stm=con.prepareStatement(sql);){
+            
+            stm.setString(1,email);
+            
+            stm.executeUpdate();
+            
+            exito=true;
+            
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return exito;
     }
 
 
