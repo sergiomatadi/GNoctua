@@ -1,22 +1,22 @@
     
 package gnoctua.Modelo;
+import java.sql.Time;
+import java.util.Date;
 
-/**
- *
- * @author denis
- */
+
+
 public class Pedido {
     private int numero;
     private int cantidad; 
     private Cliente cliente;
     private Articulo articulo;
-    private String fechaPedido;
-    private String hora;
+    private Date fechaPedido;
+    private Time hora;
     private Boolean enviado;
 
     
     
-    public Pedido(int numero, int cantidad, Cliente Cliente, Articulo Articulo, String fechaPedido, String hora, Boolean enviado) {
+    public Pedido(int numero, int cantidad, Cliente Cliente, Articulo Articulo, Date fechaPedido, Time hora, Boolean enviado) {
         this.numero = numero;
         this.cantidad = cantidad;
         this.cliente = Cliente;
@@ -24,6 +24,14 @@ public class Pedido {
         this.fechaPedido = fechaPedido;
         this.hora = hora;
         this.enviado = enviado;
+    }
+
+    Pedido(int aInt, int aInt0, Object object, java.sql.Date date, Time time, boolean aBoolean) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Pedido(int parseInt, int parseInt0, Cliente cliente, Articulo articulo, String fechaPedido, String hora, Boolean enviado) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public int getNumero() {
@@ -58,25 +66,31 @@ public class Pedido {
         this.articulo = Articulo;
     }
 
-    public String getFechaPedido() {
+    public Date getFechaPedido() {
         return fechaPedido;
     }
 
-    public void setFechaPedido(String fechaPedido) {
+    public void setFechaPedido(Date fechaPedido) {
         this.fechaPedido = fechaPedido;
     }
 
-    public String getHora() {
+    public Time getHora() {
         return hora;
     }
 
-    public void setHora(String hora) {
+    public void setHora(Time hora) {
         this.hora = hora;
     }
 
     public void setEnviado(Boolean enviado) {
         this.enviado = enviado;
     }
+
+    public Boolean getEnviado() {
+        return enviado;
+    }
+    
+
     
     public boolean pedidoEnviado() {
         return enviado;
@@ -98,6 +112,10 @@ public class Pedido {
         return text;
 
         //return "Pedido{" + "numero=" + numero + ", cantidad=" + cantidad + ", cliente nif=" + Cliente.nif + ", cliente nombre=" + Cliente.nombre + ", Articulo codigo =" + Articulo.codigo + ", Articulo descripcion =" + Articulo.descripcion + ",fechaPedido =" +fechaPedido + ", hora =" +hora + ",pvpArticulo'}';
+    }
+
+    void setPedido(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

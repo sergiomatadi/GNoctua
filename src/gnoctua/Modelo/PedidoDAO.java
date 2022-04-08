@@ -2,6 +2,7 @@
 package gnoctua.Modelo;
 import Config.Conexion;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,14 +21,15 @@ public class PedidoDAO {
 public boolean create(Pedido a){
         boolean exito=false;
         
-        String sql="insert into Pedido( numero, cantidad, cliente, articulo, fechaPedido, hora, enviado) values (?,?,?,?)";
+        String sql="insert into Pedido( cantidad, cliente, articulo, fechaPedido, hora, enviado) values (?,?,?,?,?,?)";
         try(PreparedStatement stm=con.prepareStatement(sql);){
             
-            stm.setInt(1,a.getNumero());
-            stm.setInt(2,a.getCantidad());
-            stm.setString(5,a.getFechaPedido());
-            stm.setString(6,a.getHora());
-            stm.setInt(7,a.getEnviado());
+            stm.setInt(1,a.getCantidad());
+            stm.setObject(2,a.getCliente());
+            stm.setObject(3,a.getArticulo());
+            stm.setDate(4, (Date) a.getFechaPedido());
+            stm.setTime(5,a.getHora());
+            stm.setBoolean(6,a.getEnviado());
             
             stm.executeUpdate();
             
@@ -65,11 +67,11 @@ public Pedido read(int numero){
                 a=new Pedido(
                         rs.getInt("numero"),
                         rs.getInt("cantidad"),
-                        rs.getString("cliente"),
-                        rs.getString("articulo"),
-                        rs.getInt("fechaPedido"),
-                        rs.getString("hora"),
-                        rs.getString("enviado"),
+                        //rs.getObject("cliente"),
+                        rs.getObject("articulo"),
+                        rs.getDate("fechaPedido"),
+                        rs.getTime("hora"),
+                        rs.getBoolean("enviado")
                 );
             }
             rs.close();
@@ -83,14 +85,15 @@ public Pedido read(int numero){
 public boolean update(Pedido a){
         boolean exito=false;
         
-        String sql="update Pedido set numero=?,cantidad=?,cliente=?, articulo=?, fechaPedido=?, hora=?,enviado=?, where numero=?";
+        String sql="update Pedido set cantidad=?,cliente=?, articulo=?, fechaPedido=?, hora=?,enviado=?, where numero=?";
         try(PreparedStatement stm=con.prepareStatement(sql);){
             
-            stm.setInt(1,a.getNumero());
-            stm.setInt(2,a.getCantidad());
-            stm.setString(5,a.getFechaPedido());
-            stm.setString(6,a.getHora());
-            stm.setInt(7,a.getEnviado());
+            stm.setInt(1,a.getCantidad());
+            stm.setObject(2,a.equals("cliente"));
+            stm.setObject(3,a.equals("articulo"));
+            stm.setDate(4, (Date) a.getFechaPedido());
+            stm.setTime(5,a.getHora());
+            stm.setBoolean(6,a.getEnviado());
             
             stm.executeUpdate();
             

@@ -4,10 +4,13 @@ import gnoctua.Modelo.Articulo;
 import gnoctua.Modelo.Cliente;
 import gnoctua.Modelo.ClienteEstandard;
 import gnoctua.Modelo.ClientePremium;
-import gnoctua.Modelo.Datos;
+//import gnoctua.Modelo.Datos;
 import gnoctua.Modelo.Pedido;
 import gnoctua.Vista.Interface;
 import java.util.List;
+import gnoctua.Modelo.ClienteDAO;
+import gnoctua.Modelo.ArticuloDAO;
+import gnoctua.Modelo.PedidoDAO;
 
 
 public class Controlador {
@@ -17,6 +20,7 @@ public class Controlador {
         
         Interface vista = new Interface();
         Datos bd = new Datos();
+
         
         Cliente cliente = new ClienteEstandard("Pedro", "Calle Roma 1", "pedro@roma.com", "11111111P", "estandard");
         bd.agregarCliente(cliente);
@@ -29,12 +33,7 @@ public class Controlador {
         cliente = new ClientePremium("30", "20%", "Hamilton", "Calle Hollywood 2", "hamilton@hollywood.com", "55555555H", "premium");
         bd.agregarCliente(cliente);
         
-        Articulo articulo = new Articulo("0001", "Manzanas", "20", "2", "2" );
-        bd.agregarArticulo(articulo);
-        articulo = new Articulo("0002", "Peras", "10", "2", "2" );
-        bd.agregarArticulo(articulo);
-        articulo = new Articulo("0003", "Platanos", "15", "2", "2" );
-        bd.agregarArticulo(articulo);
+
         
         Pedido pedido = new Pedido(1, 3, cliente, articulo, "02-02-2022", "10:30", true);
         bd.agregarPedido(pedido);

@@ -16,6 +16,10 @@ public class Articulo {
         this.tiempoEnvio = tiempoEnvio;
     } 
 
+    public Articulo(String codigo, String descripcion, String precioVenta, String gastosEnvio, String tiempoEnvio) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 
 
     public int getCodigo() {
