@@ -6,16 +6,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author denisse
- */
+
 public class BDConexion {
     
     private static String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static String USUARIO = "root";
     private static String PASSWORD = "Enise123";
-    private static String URL ="jdbc:mysql://localhost:3306/GNoctua";
+    private static String URL ="jdbc:mysql://localhost:3306/p5gnoctua";
             
             
     static{
