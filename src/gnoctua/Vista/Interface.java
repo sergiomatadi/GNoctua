@@ -3,6 +3,7 @@ package gnoctua.Vista;
 
 import gnoctua.Modelo.Articulo;
 import gnoctua.Modelo.Cliente;
+import gnoctua.Modelo.ClienteDAO;
 import gnoctua.Modelo.ClienteEstandard;
 import gnoctua.Modelo.ClientePremium;
 //import gnoctua.Modelo.Datos;

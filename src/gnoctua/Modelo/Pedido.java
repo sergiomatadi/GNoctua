@@ -15,7 +15,7 @@ public class Pedido {
     private Boolean enviado;
 
     
-    
+ //Constructor   
     public Pedido(int numero, int cantidad, Cliente Cliente, Articulo Articulo, Date fechaPedido, Time hora, Boolean enviado) {
         this.numero = numero;
         this.cantidad = cantidad;

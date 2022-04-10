@@ -21,7 +21,7 @@ public class Controlador {
         Interface vista = new Interface();
         Datos bd = new Datos();
 
-        
+       
         Cliente cliente = new ClienteEstandard("Pedro", "Calle Roma 1", "pedro@roma.com", "11111111P", "estandard");
         bd.agregarCliente(cliente);
         cliente = new ClienteEstandard("Heidi", "Calle Roma 2", "heidi@roma.com", "22222222H", "estandard");

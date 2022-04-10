@@ -1,11 +1,6 @@
 
 package gnoctua.Modelo;
 
-/**
- *
- * @author denis
- */
-
 public class ClienteEstandard extends Cliente {
     
     //private String tipoCliente;
