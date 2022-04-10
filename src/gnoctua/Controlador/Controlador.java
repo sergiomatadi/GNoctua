@@ -10,7 +10,10 @@ import gnoctua.Vista.Interface;
 import java.util.List;
 import gnoctua.Modelo.ClienteDAO;
 import gnoctua.Modelo.ArticuloDAO;
+import gnoctua.Modelo.ArticuloDAOMemory;
+import gnoctua.Modelo.ClienteDAOMemory;
 import gnoctua.Modelo.PedidoDAO;
+import gnoctua.Modelo.PedidoDAOMemory;
 
 
 public class Controlador {
@@ -19,26 +22,29 @@ public class Controlador {
     public static void main(String[] args) {
         
         Interface vista = new Interface();
-        Datos bd = new Datos();
+        ClienteDAO clientedao = new ClienteDAOMemory();
+        PedidoDAO pedidodao = new PedidoDAOMemory();
+        ArticuloDAO articulodao = new ArticuloDAOMemory();
+        //Datos bd = new Datos();
 
-       
+       /*
         Cliente cliente = new ClienteEstandard("Pedro", "Calle Roma 1", "pedro@roma.com", "11111111P", "estandard");
-        bd.agregarCliente(cliente);
+        clientedao.create(cliente);
         cliente = new ClienteEstandard("Heidi", "Calle Roma 2", "heidi@roma.com", "22222222H", "estandard");
-        bd.agregarCliente(cliente);
+        clientedao.create(cliente);
         cliente = new ClienteEstandard("Blanca", "Calle Roma 3", "blanca@roma.com", "33333333B", "estandard");
-        bd.agregarCliente(cliente);
+        clientedao.create(cliente);
         cliente = new ClientePremium("30", "20%", "Arnold", "Calle Hollywood 1", "arnold@hollywood.com", "44444444A", "premium");
-        bd.agregarCliente(cliente);
+        clientedao.create(cliente);
         cliente = new ClientePremium("30", "20%", "Hamilton", "Calle Hollywood 2", "hamilton@hollywood.com", "55555555H", "premium");
-        bd.agregarCliente(cliente);
+        clientedao.create(cliente);
         
 
         
         Pedido pedido = new Pedido(1, 3, cliente, articulo, "02-02-2022", "10:30", true);
         bd.agregarPedido(pedido);
         pedido = new Pedido(2, 4, cliente, articulo, "02-03-2022", "10:40", true);
-        bd.agregarPedido(pedido);
+        bd.agregarPedido(pedido);*/
         
         int opc = 0;
         do{
@@ -47,7 +53,7 @@ public class Controlador {
                
                 case 1:
                     cliente = vista.lecturaCliente();
-                    bd.agregarCliente(cliente);
+                    clientedao.create(cliente);
                     vista.msg("**********************");
                     vista.msg("Guardado correctamente");
                     vista.msg("**********************");
