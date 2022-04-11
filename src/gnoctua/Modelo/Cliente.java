@@ -6,7 +6,9 @@ public abstract class Cliente {
     protected String domicilio;
     protected String email;
     protected String nif; 
-    protected String tipoCliente;
+    protected int cuota;
+    protected int descuento;
+    
     
 
    //public abstract String tipoCliente(){}; 
@@ -15,25 +17,17 @@ public abstract class Cliente {
     Constructor
     */
     public Cliente() {};
-    public Cliente(String nombre, String domicilio, String email, String nif, String tipoCliente) {
+    public Cliente(String nombre, String domicilio, String email, String nif) {
         this.nombre = nombre;
         this.domicilio = domicilio;
         this.email = email;
         this.nif = nif;
-        this.tipoCliente = tipoCliente;
+        
     }
 
     /*
     Getter y Setter
     */
-    public String getTipoCliente() {
-        return tipoCliente;
-    }
-
-    public void setTipoCliente(String tipoCliente) {
-        this.tipoCliente = tipoCliente;
-    }
-    
     public String getNombre() {
         return nombre;
     }
@@ -65,13 +59,34 @@ public abstract class Cliente {
     public void setNif(String nif) {
         this.nif = nif;
     }
+    public void setCuota(int cuota) {
+        this.cuota = cuota;
+    }
 
+    public int getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(int descuento) {
+        this.descuento = descuento;
+    }
+    
+    public abstract boolean tipoCliente (String email);
+
+    public abstract double cuotaAnual(); 
+
+    public abstract double descuentoEnvio(double totalPedido); 
+    
     @Override
     public String toString() {
         return "Cliente{" + "nombre=" + nombre + ", domicilio=" + domicilio + ", email=" + email + ", nif=" + nif + '}';
     }
 
     void setCliente(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void descuentoEnvio(int i) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

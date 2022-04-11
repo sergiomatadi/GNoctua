@@ -3,10 +3,11 @@ package gnoctua.Modelo;
 import java.util.ArrayList;
 import java.util.List;
 
-/*public class Datos {
+ public class Datos {
  private final List<Cliente> datos = new ArrayList<>();
  private final List<Articulo> art = new ArrayList<>();
  private final List<Pedido> pedidos = new ArrayList<>();
+ 
     
     public boolean agregarCliente(Cliente cliente){
         datos.add(cliente);
@@ -41,9 +42,9 @@ import java.util.List;
         return art;
     }
     
-    public Articulo getArticuloByCodigo(String codigo) {
+    public Articulo getArticuloByCodigo(int codigo) {
         for (int i = 0; i < art.size(); i++) {
-            if(art.get(i).getCodigo().equals(codigo)) {
+            if(art.get(i).getCodigo() == codigo) {
                 return art.get(i);
             }
         }
@@ -61,4 +62,3 @@ import java.util.List;
     
     
 }
-*/

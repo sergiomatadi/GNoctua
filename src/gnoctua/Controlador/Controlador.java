@@ -2,8 +2,6 @@ package gnoctua.Controlador;
 
 import gnoctua.Modelo.Articulo;
 import gnoctua.Modelo.Cliente;
-import gnoctua.Modelo.ClienteEstandard;
-import gnoctua.Modelo.ClientePremium;
 //import gnoctua.Modelo.Datos;
 import gnoctua.Modelo.Pedido;
 import gnoctua.Vista.Interface;
@@ -52,7 +50,7 @@ public class Controlador {
             switch(opc){
                
                 case 1:
-                    cliente = vista.lecturaCliente();
+                    clientedao = vista.lecturaCliente();
                     clientedao.create(cliente);
                     vista.msg("**********************");
                     vista.msg("Guardado correctamente");

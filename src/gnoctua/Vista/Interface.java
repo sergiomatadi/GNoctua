@@ -70,6 +70,7 @@ public class Interface {
         }
     }
     
+    
     public Articulo introducirArticulo(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Codigo articulo:");

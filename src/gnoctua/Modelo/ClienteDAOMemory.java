@@ -8,20 +8,21 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-// CRUD = Create Reaad Update Delete
-public class ClienteDAOMemory implements ClienteDAO{
+// CRUD = Create Read Update Delete
+public class ClienteDAOMemory extends Conexion implements ClienteDAO{
     
-    private Connection con;
+    private final Connection con;
     
     public ClienteDAOMemory(){
         con=Conexion.conexion();
     }
-
+    
     /**
      * Inserta el cliente en la base de datos
      * @param a Cliente a insertar
      * @return true si se ha conseguido insertar y false si no
      */
+    @Override
     public boolean create(Cliente a){
         boolean exito=false;
         
@@ -32,7 +33,7 @@ public class ClienteDAOMemory implements ClienteDAO{
             stm.setString(2,a.getDomicilio());
             stm.setString(3,a.getEmail());
             stm.setString(4,a.getNif());
-            stm.setString(5,a.getTipoCliente());
+            
             
             stm.executeUpdate();
             
@@ -40,7 +41,7 @@ public class ClienteDAOMemory implements ClienteDAO{
             
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.err.println();
         }
         
         if(exito){
@@ -52,7 +53,7 @@ public class ClienteDAOMemory implements ClienteDAO{
                 
             }
             catch(SQLException e){
-                e.printStackTrace();
+                System.err.println();
             }
         }
         
@@ -64,6 +65,7 @@ public class ClienteDAOMemory implements ClienteDAO{
      * @param email Email del cliente a buscar
      * @return el objeto Cliente si estaba en la base de datos y null si no estaba
      */
+    @Override
     public Cliente read(String email){
         Cliente a=null;
         
@@ -77,19 +79,19 @@ public class ClienteDAOMemory implements ClienteDAO{
                         rs.getString("nombre"),
                         rs.getString("domicilio"),
                         rs.getString("email"),
-                        rs.getString("nif"),
-                        rs.getString("tipoCliente")
-                ) {};
+                        rs.getString("nif")                   
+                );
             }
             rs.close();
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.err.println();
         }
         
         return a;
     }
     
+    @Override
     public boolean update(Cliente a){
         boolean exito=false;
         
@@ -99,7 +101,6 @@ public class ClienteDAOMemory implements ClienteDAO{
             stm.setString(1,a.getNombre());
             stm.setString(2,a.getDomicilio());
             stm.setString(3,a.getNif());
-            stm.setString(4,a.getTipoCliente());
             stm.setString(5,a.getEmail());
             
             stm.executeUpdate();
@@ -108,12 +109,13 @@ public class ClienteDAOMemory implements ClienteDAO{
             
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.err.println();
         }
         
         return exito;
     }
     
+    @Override
     public boolean delete(String email){
         boolean exito=false;
         
@@ -128,12 +130,12 @@ public class ClienteDAOMemory implements ClienteDAO{
             
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.err.println();
         }
         
         return exito;
     }
-
+    
 
 }
 

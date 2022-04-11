@@ -11,7 +11,7 @@ import java.sql.Statement;
 // CRUD = Create Reaad Update Delete
 public class ArticuloDAOMemory implements ArticuloDAO {
     
-    private Connection con;
+    private final Connection con;
     
     public ArticuloDAOMemory(){
         con=Conexion.conexion();
@@ -22,6 +22,7 @@ public class ArticuloDAOMemory implements ArticuloDAO {
      * @param a Articulo a insertar
      * @return true si se ha conseguido insertar y false si no
      */
+    @Override
     public boolean create(Articulo a){
         boolean exito=false;
         
@@ -39,7 +40,7 @@ public class ArticuloDAOMemory implements ArticuloDAO {
             
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.err.println();
         }
         
         if(exito){
@@ -51,7 +52,7 @@ public class ArticuloDAOMemory implements ArticuloDAO {
                 
             }
             catch(SQLException e){
-                e.printStackTrace();
+                System.err.println();
             }
         }
         
@@ -63,6 +64,7 @@ public class ArticuloDAOMemory implements ArticuloDAO {
      * @param codigo Codigo del articulo a buscar
      * @return el objeto articulo si estaba en la base de datos y null si no estaba
      */
+    @Override
     public Articulo read(int codigo){
         Articulo a=null;
         
@@ -70,25 +72,27 @@ public class ArticuloDAOMemory implements ArticuloDAO {
         try(PreparedStatement stm=con.prepareStatement(sql);){
             stm.setInt(1, codigo);
             
-            ResultSet rs=stm.executeQuery(); // Conjunto de filas que ha obtenido la consulta
-            if(rs.next()){ // next avanza a la siguiente fila ( en esrte caso solo habra una SI EXISTE UN ARTICULO CON ESE CODIGO. Si no hay siguiente fila devuelve false y si la hay debvuelve true
-                a=new Articulo(
-                        rs.getInt("codigo"),
-                        rs.getString("descripcion"),
-                        rs.getDouble("precioVenta"),
-                        rs.getDouble("gastosEnvio"),
-                        rs.getInt("tiempoEnvio")
-                );
+            try (ResultSet rs = stm.executeQuery() // Conjunto de filas que ha obtenido la consulta
+            ) {
+                if(rs.next()){ // next avanza a la siguiente fila ( en esrte caso solo habra una SI EXISTE UN ARTICULO CON ESE CODIGO. Si no hay siguiente fila devuelve false y si la hay debvuelve true
+                    a=new Articulo(
+                            rs.getInt("codigo"),
+                            rs.getString("descripcion"),
+                            rs.getDouble("precioVenta"),
+                            rs.getDouble("gastosEnvio"),
+                            rs.getInt("tiempoEnvio")
+                    );
+                }
             }
-            rs.close();
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.err.println();
         }
         
         return a;
     }
     
+    @Override
     public boolean update(Articulo a){
         boolean exito=false;
         
@@ -107,12 +111,13 @@ public class ArticuloDAOMemory implements ArticuloDAO {
             
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.err.println();
         }
         
         return exito;
     }
     
+    @Override
     public boolean delete(int codigo){
         boolean exito=false;
         
@@ -127,7 +132,7 @@ public class ArticuloDAOMemory implements ArticuloDAO {
             
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.err.println();
         }
         
         return exito;

@@ -9,14 +9,15 @@ package gnoctua.Modelo;
 public class ClientePremium extends Cliente{  
     
     public String cuota, descuentoEnvio;
+    private double getCuota;
 
-    public ClientePremium(String cuota, String descuentoEnvio, String nombre, String domicilio, String email, String nif, String tipoCliente) {
-        super(nombre, domicilio, email, nif, tipoCliente);
-        this.cuota = cuota;
-        this.descuentoEnvio = descuentoEnvio;    
+    public ClientePremium(String cuota, String descuentoEnvio, String nombre, String domicilio, String email, String nif) {
+        super(nombre, domicilio, email, nif);
+        super.setCuota(30);
+        super.descuentoEnvio(20);    
     }
 
-    public String getCuota(){
+    /*public String getCuota(){
         return this.cuota;
     }
 
@@ -30,7 +31,7 @@ public class ClientePremium extends Cliente{
 
     public void descuentoEnvio(String descuentoEnvio){
         this.descuentoEnvio = descuentoEnvio;
-    }
+    }*/
  
    //public abstract float getDescuentoEnv();
 
@@ -54,8 +55,26 @@ public class ClientePremium extends Cliente{
     }
     
     */
+    
+
+    @Override
+    public boolean tipoCliente(String email) {
+        return false;
+    }
+
+    @Override
+    public double cuotaAnual() {
+        return getCuota;
+    }
+
+    @Override
+    public double descuentoEnvio(double totalPedido) {
+        return totalPedido - (totalPedido *0.2);
+    }
     @Override
     public String toString() {
-        return "Cliente{ nombre=" + nombre + ", domicilio=" + domicilio + ", email=" + email + ", nif=" + nif + ", tipo de cliente=" + tipoCliente + ", cuota=" + cuota + ", descuentoEnvio=" + descuentoEnvio +" }";
+        return "Cliente{ nombre=" + nombre + ", domicilio=" + domicilio + ", email=" + email + ", nif=" + nif + ", cuota=" + cuota + ", descuentoEnvio=" + descuentoEnvio +" }";
     }
+
+
 }
