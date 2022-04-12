@@ -15,9 +15,13 @@ import gnoctua.Modelo.PedidoDAOMemory;
 
 
 public class Controlador {
-    
    
-    public static void main(String[] args) {
+    /**
+     *
+     * @param args
+     * @throws java.lang.Exception
+     */
+    public static void main(String[] args) throws Exception{
         
         Interface vista = new Interface();
         ClienteDAO clientedao = new ClienteDAOMemory();
@@ -50,31 +54,29 @@ public class Controlador {
             switch(opc){
                
                 case 1:
-                    clientedao = vista.lecturaCliente();
+                    Cliente cliente = vista.lecturaCliente();
                     clientedao.create(cliente);
                     vista.msg("**********************");
                     vista.msg("Guardado correctamente");
                     vista.msg("**********************");
                     break;
                 case 2: 
-                    List<Cliente> datos = bd.obtenerClientes();
-                    vista.mostrarClientes(datos);
+                    clientedao.listarClientes();
                     break;
                 case 3:
-                    articulo = vista.introducirArticulo();
-                    bd.agregarArticulo(articulo);
+                    Articulo articulo = vista.introducirArticulo();
+                    articulodao.create(articulo);
                     vista.msg("**********************");
                     vista.msg("Guardado correctamente");
                     vista.msg("**********************");
                     break;
                 case 4:
-                    List<Articulo> art = bd.obtnerArticulo();
-                    vista.mostrarArticulos(art);
+                    articulodao.listarArticulos();
                     break; 
                 case 5: 
                     String nif = vista.introducirNifCliente();
-                    if(bd.existeClienteByNif(nif)) {
-                        cliente = bd.getClienteByNif(nif);
+                    if(clientedao.existeCliente(nif)) {
+                        cliente = clientedao.readByNif(nif);
                     }else {
                         cliente = vista.lecturaCliente();
                     }

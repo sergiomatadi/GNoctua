@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 // CRUD = Create Reaad Update Delete
 public class ArticuloDAOMemory implements ArticuloDAO {
@@ -138,4 +140,38 @@ public class ArticuloDAOMemory implements ArticuloDAO {
         return exito;
     }
     
+        public List<Articulo> getArticulos() throws SQLException{
+        Articulo a = null;
+        List<Articulo> list = new ArrayList<>(); 
+        
+            String sql="select (codigo,descripcion, precioVenta, gastosEnvio, tiempoEnvio) from Articulo";
+            try(PreparedStatement stm = con.prepareStatement(sql);
+                ResultSet rs = stm.executeQuery()){ // Conjunto de filas que ha obtenido la consulta
+             
+                    while(rs.next()){ // next avanza a la siguiente fila ( en esrte caso solo habra una SI EXISTE UN ARTICULO CON ESE CODIGO. Si no hay siguiente fila devuelve false y si la hay debvuelve true
+
+                            Articulo articulo = new Articulo(
+                                    rs.getInt(1), 
+                                    rs.getString(2),
+                                    rs.getDouble(3),
+                                    rs.getDouble(5),
+                                    rs.getInt(6)
+                            );
+                            
+                            list.add(articulo);               
+                    }
+                }
+            catch(SQLException e){
+                    System.err.println();
+            }
+            return list;    
+    }
+    
+    public void listarArticulos() throws Exception {
+        List<Articulo> list = new ArrayList<>();
+        list = getArticulos();
+        for(Articulo articulo: list){
+            System.out.println(articulo);
+        }
+    }
 }

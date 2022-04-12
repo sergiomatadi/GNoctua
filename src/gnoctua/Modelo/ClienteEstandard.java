@@ -17,6 +17,9 @@ public class ClienteEstandard extends Cliente {
         super.setDescuento(0);
         //this.tipoCliente = tipoCliente;
     }
+
+    ClienteEstandard() {
+    }
     
     @Override
     public boolean tipoCliente(String email) {

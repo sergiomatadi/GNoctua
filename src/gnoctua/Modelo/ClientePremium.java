@@ -11,7 +11,7 @@ public class ClientePremium extends Cliente{
     public String cuota, descuentoEnvio;
     private double getCuota;
 
-    public ClientePremium(String cuota, String descuentoEnvio, String nombre, String domicilio, String email, String nif) {
+    public ClientePremium(int cuota, int descuentoEnvio, String nombre, String domicilio, String email, String nif) {
         super(nombre, domicilio, email, nif);
         super.setCuota(30);
         super.descuentoEnvio(20);    
@@ -34,6 +34,10 @@ public class ClientePremium extends Cliente{
     }*/
  
    //public abstract float getDescuentoEnv();
+
+    ClientePremium() {
+        
+    }
 
             
     /*@Override

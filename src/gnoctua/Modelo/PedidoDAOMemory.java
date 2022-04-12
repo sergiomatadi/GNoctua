@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 
 // CRUD = Create Reaad Update Delete
@@ -126,5 +128,39 @@ public boolean update(Pedido a){
         
         return exito;
     }
+    public List<Articulo> getPedidos() throws SQLException{
+       Pedido a = null;
+        List<Pedido> list = new ArrayList<>(); 
+        
+            String sql="select (codigo,descripcion, precioVenta, gastosEnvio, tiempoEnvio) from Articulo";
+            try(PreparedStatement stm = con.prepareStatement(sql);
+                ResultSet rs = stm.executeQuery()){ // Conjunto de filas que ha obtenido la consulta
+             
+                    while(rs.next()){ // next avanza a la siguiente fila ( en esrte caso solo habra una SI EXISTE UN ARTICULO CON ESE CODIGO. Si no hay siguiente fila devuelve false y si la hay debvuelve true
+
+                            Pedido pedido = new Pedido(
+                                    rs.getInt(1), 
+                                    rs.getInt(2),
+                                    rs.getString(3),
+                                    rs.getString(4),
+                                    rs.getDate(5),
+                                    rs.getTime(6),
+                                    rs.getBoolean(7),           
+                            );
+                            
+                            list.add(articulo);               
+                    }
+                }
+            catch(SQLException e){
+                    System.err.println();
+            }
+            return list;    
+    }
     
+    public void listarArticulos() throws Exception {
+        List<Articulo> list = new ArrayList<>();
+        list = getArticulos();
+        for(Articulo articulo: list){
+            System.out.println(articulo);
+        }
 }

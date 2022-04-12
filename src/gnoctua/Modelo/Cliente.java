@@ -59,6 +59,10 @@ public abstract class Cliente {
     public void setNif(String nif) {
         this.nif = nif;
     }
+    
+    public int getCuota(){
+        return cuota;
+    }
     public void setCuota(int cuota) {
         this.cuota = cuota;
     }
@@ -89,7 +93,5 @@ public abstract class Cliente {
     void descuentoEnvio(int i) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-  
-    
+   
 }
