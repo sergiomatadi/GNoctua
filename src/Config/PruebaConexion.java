@@ -1,11 +1,13 @@
+package Config;
 
-package com.mysql.conexion;
+
+
 
 
 public class PruebaConexion {
     
     public static void main(String[] args) {
-        BDConexion bd = new BDConexion();
+        Conexion bd = new Conexion();
         bd.getConnection();
     }
 }

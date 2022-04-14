@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 // CRUD = Create Reaad Update Delete
 public class ArticuloDAO {
@@ -87,6 +89,32 @@ public class ArticuloDAO {
         }
         
         return a;
+    }
+    
+    public List<Articulo> listar(){
+        List<Articulo> l=new ArrayList<>();
+        
+        String sql="select * from Articulo";
+        try(PreparedStatement stm=con.prepareStatement(sql);){
+            
+            ResultSet rs=stm.executeQuery(); // Conjunto de filas que ha obtenido la consulta
+            while(rs.next()){ // next avanza a la siguiente fila ( en esrte caso solo habra una SI EXISTE UN ARTICULO CON ESE CODIGO. Si no hay siguiente fila devuelve false y si la hay debvuelve true
+                Articulo a=new Articulo(
+                        rs.getInt("codigo"),
+                        rs.getString("descripcion"),
+                        rs.getDouble("precioVenta"),
+                        rs.getDouble("gastosEnvio"),
+                        rs.getInt("tiempoEnvio")
+                );
+                l.add(a);
+            }
+            rs.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return l;
     }
     
     public boolean update(Articulo a){

@@ -6,7 +6,6 @@ public abstract class Cliente {
     protected String domicilio;
     protected String email;
     protected String nif; 
-    protected String tipoCliente;
     
 
    //public abstract String tipoCliente(){}; 
@@ -14,25 +13,18 @@ public abstract class Cliente {
    /*
     Constructor
     */
-    public Cliente() {};
-    public Cliente(String nombre, String domicilio, String email, String nif, String tipoCliente) {
+   
+    public Cliente(String nombre, String domicilio, String email, String nif) {
         this.nombre = nombre;
         this.domicilio = domicilio;
         this.email = email;
         this.nif = nif;
-        this.tipoCliente = tipoCliente;
     }
 
     /*
     Getter y Setter
     */
-    public String getTipoCliente() {
-        return tipoCliente;
-    }
-
-    public void setTipoCliente(String tipoCliente) {
-        this.tipoCliente = tipoCliente;
-    }
+   
     
     public String getNombre() {
         return nombre;
