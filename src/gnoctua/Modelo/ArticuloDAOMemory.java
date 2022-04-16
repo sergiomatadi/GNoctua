@@ -88,7 +88,7 @@ public class ArticuloDAOMemory implements ArticuloDAO {
             }
         }
         catch(SQLException e){
-            System.err.println();
+            System.err.println(e);
         }
         
         return a;
@@ -162,7 +162,7 @@ public class ArticuloDAOMemory implements ArticuloDAO {
                     }
                 }
             catch(SQLException e){
-                    System.err.println();
+                    System.err.println(e);
             }
             return list;    
     }

@@ -38,7 +38,8 @@ public boolean create(Pedido a){
             exito=true;
             
         }catch(SQLException e){
-            e.printStackTrace();
+            System.err.println(e);
+        
         }
         
         if(exito){
@@ -50,7 +51,8 @@ public boolean create(Pedido a){
                 
             }
             catch(SQLException e){
-                e.printStackTrace();
+                System.err.println(e);
+        
             }
         }
         
@@ -79,7 +81,8 @@ public Pedido read(int numero){
             rs.close();
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.err.println(e);
+        
         }
         
         return a;
@@ -103,7 +106,7 @@ public boolean update(Pedido a){
             
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.err.println(e);
         }
         
         return exito;
@@ -123,12 +126,12 @@ public boolean update(Pedido a){
             
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.err.println(e);
         }
         
         return exito;
     }
-    public List<Articulo> getPedidos() throws SQLException{
+    public List<Pedido> getPedidos() throws SQLException{
        Pedido a = null;
         List<Pedido> list = new ArrayList<>(); 
         
@@ -145,22 +148,23 @@ public boolean update(Pedido a){
                                     rs.getString(4),
                                     rs.getDate(5),
                                     rs.getTime(6),
-                                    rs.getBoolean(7),           
+                                    rs.getBoolean(7),        
                             );
                             
-                            list.add(articulo);               
+                            list.add(pedido);               
                     }
                 }
             catch(SQLException e){
-                    System.err.println();
+                    System.err.println(e);
             }
             return list;    
     }
     
-    public void listarArticulos() throws Exception {
-        List<Articulo> list = new ArrayList<>();
-        list = getArticulos();
-        for(Articulo articulo: list){
-            System.out.println(articulo);
+    public void listarPedidos() throws Exception {
+        List<Pedido> list = new ArrayList<>();
+        list = getPedidos();
+        for(Pedido pedido: list){
+            System.out.println(pedido);
         }
+    }
 }

@@ -45,7 +45,7 @@ public class ClienteDAOMemory extends Conexion implements ClienteDAO{
             
         }
         catch(SQLException e){
-            System.err.println();
+            System.err.println(e);
         }
         
         if(exito){
@@ -57,7 +57,7 @@ public class ClienteDAOMemory extends Conexion implements ClienteDAO{
                 
             }
             catch(SQLException e){
-                System.err.println();
+                System.err.println(e);
             }
         }
         
@@ -93,7 +93,7 @@ public class ClienteDAOMemory extends Conexion implements ClienteDAO{
             }
         }
         catch(SQLException e){
-            System.err.println();
+            System.err.println(e);
         }
         
         return a;
@@ -120,7 +120,7 @@ public class ClienteDAOMemory extends Conexion implements ClienteDAO{
             
         }
         catch(SQLException e){
-            System.err.println();
+            System.err.println(e);
         }
         
         return exito;
@@ -141,7 +141,7 @@ public class ClienteDAOMemory extends Conexion implements ClienteDAO{
             
         }
         catch(SQLException e){
-            System.err.println();
+            System.err.println(e);
         }
         
         return exito;
@@ -184,7 +184,7 @@ public class ClienteDAOMemory extends Conexion implements ClienteDAO{
                     }
                 }
             catch(SQLException e){
-                    System.err.println();
+                    System.err.println(e);
             }
             return list;    
     }
@@ -251,7 +251,7 @@ public class ClienteDAOMemory extends Conexion implements ClienteDAO{
             }
         }
         catch(SQLException e){
-            System.err.println();
+            System.err.println(e);
         }
         
         return a;
