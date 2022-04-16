@@ -87,15 +87,16 @@ public class InterfaceUsuario {
     public Articulo introducirArticulo(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Codigo articulo:");
-        String codigo = sc.nextLine();
+        int codigo = sc.nextInt();
         System.out.println("Descripción articulo:");
         String descripcion = sc.nextLine();
         System.out.println("PVP:");
-        String precioVenta = sc.nextLine();
+        double precioVenta = sc.nextDouble();
         System.out.println("Gastos de envio");
-        String gastosEnvio = sc.nextLine();
+        double gastosEnvio = sc.nextDouble();
         System.out.println("Tiempo de envio");
-        String tiempoEnvio = sc.nextLine();
+        String stiempoEnvio = sc.nextLine();
+        LocalDate tiempoEnvio=LocalDate.parse(stiempoEnvio,DateTimeFormatter.ISO_LOCAL_DATE);
         return new Articulo(codigo, descripcion, precioVenta, gastosEnvio, tiempoEnvio);
           
     }

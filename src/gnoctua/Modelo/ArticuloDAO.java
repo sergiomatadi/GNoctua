@@ -33,7 +33,7 @@ public class ArticuloDAO {
             stm.setString(1,a.getDescripcion());
             stm.setDouble(2,a.getPrecioVenta());
             stm.setDouble(3,a.getGastosEnvio());
-            stm.setInt(4,a.getTiempoEnvio());
+            stm.setDate(4,java.sql.Date.valueOf(a.getTiempoEnvio()));
             
             stm.executeUpdate();
             
@@ -79,7 +79,7 @@ public class ArticuloDAO {
                         rs.getString("descripcion"),
                         rs.getDouble("precioVenta"),
                         rs.getDouble("gastosEnvio"),
-                        rs.getInt("tiempoEnvio")
+                        rs.getDate("tiempoEnvio").toLocalDate()
                 );
             }
             rs.close();
@@ -104,7 +104,7 @@ public class ArticuloDAO {
                         rs.getString("descripcion"),
                         rs.getDouble("precioVenta"),
                         rs.getDouble("gastosEnvio"),
-                        rs.getInt("tiempoEnvio")
+                        rs.getDate("tiempoEnvio").toLocalDate()
                 );
                 l.add(a);
             }
@@ -126,7 +126,7 @@ public class ArticuloDAO {
             stm.setString(1,a.getDescripcion());
             stm.setDouble(2,a.getPrecioVenta());
             stm.setDouble(3,a.getGastosEnvio());
-            stm.setInt(4,a.getTiempoEnvio());
+            stm.setDate(4,java.sql.Date.valueOf(a.getTiempoEnvio()));
             stm.setInt(5,a.getCodigo());
             
             stm.executeUpdate();
