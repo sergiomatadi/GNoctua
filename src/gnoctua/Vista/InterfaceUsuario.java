@@ -86,6 +86,7 @@ public class InterfaceUsuario {
    
     public Articulo introducirArticulo(){
         Scanner sc = new Scanner(System.in);
+        //No tiene sentido pedir el codigo del articulo porque luego se autoincrementa al guardar en BBDD
         //System.out.println("Codigo articulo:");
         int codigo = 1;
         System.out.println("Descripción articulo:");
@@ -94,7 +95,7 @@ public class InterfaceUsuario {
         double precioVenta = Double.parseDouble(sc.nextLine());
         System.out.println("Gastos de envio");
         double gastosEnvio = Double.parseDouble(sc.nextLine());
-        System.out.println("Tiempo de envio");
+        System.out.println("Tiempo de envio - Formato: yyyy-mm-dd");
         String stiempoEnvio = sc.nextLine();
         LocalDate tiempoEnvio=LocalDate.parse(stiempoEnvio);
         return new Articulo(codigo, descripcion, precioVenta, gastosEnvio, tiempoEnvio);
@@ -128,14 +129,15 @@ public class InterfaceUsuario {
     
     public Pedido introducirPedido(Cliente cliente, Articulo articulo){
         Scanner sc = new Scanner (System.in);
-        System.out.println("Numero de pedido:");
-        int numero = Integer.parseInt(sc.nextLine());
+        //No tiene sentido pedir el numero del pedido porque luego se autoincrementa al guardar en BBDD
+        //System.out.println("Numero de pedido:");
+        int numero = 1;
         System.out.println("Cantidad");
         int cantidad = Integer.parseInt(sc.nextLine());
-        System.out.println("Fecha de pedido");
+        System.out.println("Fecha de pedido - Formato: yyyy-mm-dd");
         String sFechaPedido = sc.nextLine();
         LocalDate fechaPedido=LocalDate.parse(sFechaPedido,DateTimeFormatter.ISO_LOCAL_DATE); 
-        System.out.println("Hora de pedido");
+        System.out.println("Hora de pedido - Formato: hh:mm");
         String sHora = sc.nextLine();
         LocalTime hora=LocalTime.parse(sHora,DateTimeFormatter.ISO_LOCAL_TIME);
         System.out.println("Ha sido enviado? (true, false)");
