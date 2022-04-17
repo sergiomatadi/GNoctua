@@ -37,7 +37,7 @@ public class PedidoDAO {
             exito = true;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
         if (exito) {
@@ -48,7 +48,7 @@ public class PedidoDAO {
                 a.setNumero(rs.getInt("numero"));
 
             } catch (SQLException e) {
-                e.printStackTrace();
+               // e.printStackTrace();
             }
         }
 
