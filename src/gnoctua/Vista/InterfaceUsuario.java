@@ -2,18 +2,28 @@
 package gnoctua.Vista;
 
 import gnoctua.Modelo.Articulo;
+import gnoctua.Modelo.ArticuloDAO;
 import gnoctua.Modelo.Cliente;
-import gnoctua.Modelo.ClienteEstandard;
+import gnoctua.Modelo.ClienteDAO;
+import gnoctua.Modelo.ClienteStandard;
 import gnoctua.Modelo.ClientePremium;
 //import gnoctua.Modelo.Datos;
 import java.util.List;
 import gnoctua.Modelo.Pedido;
+import gnoctua.Modelo.PedidoDAO;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 
-public class Interface {
+public class InterfaceUsuario {
+    
+    ClienteDAO clienteDao = new ClienteDAO();
+    ArticuloDAO articuloDao = new ArticuloDAO();
+    PedidoDAO pedidoDao = new PedidoDAO();
 
-    Datos datos = new Datos();
+    
     public int menu(){
         int opc = 0;
     
@@ -36,7 +46,7 @@ public class Interface {
     return opc;
     }
     
-    public Cliente lecturaCliente(){
+   public Cliente lecturaCliente(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Nombre cliente:");
         String nombre = sc.nextLine();
@@ -51,39 +61,46 @@ public class Interface {
         System.out.println("2. Premium");
         String tipoCliente = sc.nextLine();
         if ("1".equals(tipoCliente)) {
-            return new ClienteEstandard(nombre, domicilio, email, nif, "estandard"); 
+            return new ClienteStandard(nombre, domicilio, email, nif); 
         }else{
             System.out.println("Cuota");
-            String cuota = sc.nextLine();
+            int cuota = sc.nextInt();
             System.out.println("Descuento por pedido a clientes premium");
-            String descuentoEnvio = sc.nextLine();
-            return new ClientePremium(cuota, descuentoEnvio, nombre, domicilio, email, nif, "premium") {};
+            double descuentoEnvio = sc.nextDouble();
+            return new ClientePremium(cuota, descuentoEnvio, nombre, domicilio, email, nif);
             
         }
+         
     
     }
-    public void mostrarClientes(List<Cliente>clientes){
-        System.out.println("Datos clientes");
-        for(Cliente cliente: clientes){
-            System.out.println(cliente);
-        }
-    }
-    
+   
+   public void listarClientes( List<Cliente> lista){
+       
+       System.out.println("LISTADO DE CLIENTES");
+       for(Cliente c : lista){
+           System.out.println(c);
+       }
+       System.out.println();
+   }
+   
+   
     public Articulo introducirArticulo(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Codigo articulo:");
-        String codigo = sc.nextLine();
+        int codigo = sc.nextInt();
         System.out.println("Descripción articulo:");
         String descripcion = sc.nextLine();
         System.out.println("PVP:");
-        String precioVenta = sc.nextLine();
+        double precioVenta = sc.nextDouble();
         System.out.println("Gastos de envio");
-        String gastosEnvio = sc.nextLine();
+        double gastosEnvio = sc.nextDouble();
         System.out.println("Tiempo de envio");
-        String tiempoEnvio = sc.nextLine();
+        String stiempoEnvio = sc.nextLine();
+        LocalDate tiempoEnvio=LocalDate.parse(stiempoEnvio,DateTimeFormatter.ISO_LOCAL_DATE);
         return new Articulo(codigo, descripcion, precioVenta, gastosEnvio, tiempoEnvio);
           
     }
+    
     public void mostrarArticulos(List<Articulo>articulos){
         System.out.println("Articulos");
         for(Articulo articulo: articulos){
@@ -101,26 +118,30 @@ public class Interface {
         return nifCliente;
     }
     
-    public String introducirCodigoArticulo() {
+    public int introducirCodigoArticulo() {
         Scanner sc = new Scanner (System.in);
         System.out.println("Codigo de artículo");
-        String codigoArticulo = sc.nextLine();
+        int codigoArticulo = sc.nextInt();
         return codigoArticulo;
     }
+    
     
     public Pedido introducirPedido(Cliente cliente, Articulo articulo){
         Scanner sc = new Scanner (System.in);
         System.out.println("Numero de pedido:");
-        String numero = sc.nextLine();
+        int numero = sc.nextInt();
         System.out.println("Cantidad");
-        String cantidad =sc.nextLine();
+        int cantidad =sc.nextInt();
         System.out.println("Fecha de pedido");
-        String fechaPedido = sc.nextLine();
+        String sFechaPedido = sc.nextLine();
+        LocalDate fechaPedido=LocalDate.parse(sFechaPedido,DateTimeFormatter.ISO_LOCAL_DATE); 
         System.out.println("Hora de pedido");
-        String hora = sc.nextLine();
+        String sHora = sc.nextLine();
+        LocalTime hora=LocalTime.parse(sHora,DateTimeFormatter.ISO_LOCAL_TIME);
         System.out.println("Ha sido enviado? (true, false)");
-        Boolean enviado = sc.nextLine() == "true" ? true : false;;
-        return new Pedido (Integer.parseInt(numero), Integer.parseInt(cantidad), cliente, articulo, fechaPedido, hora, enviado );
+        String sEnviado=sc.nextLine();
+        Boolean enviado = sEnviado.equals("true");
+        return new Pedido (numero, cantidad, cliente, articulo, fechaPedido, hora, enviado );
                
     }
     

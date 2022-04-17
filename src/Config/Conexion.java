@@ -14,21 +14,25 @@ import javax.swing.JOptionPane;
 public class Conexion {
     
     private static Connection con;
-    private static final String URL = "jdbc:mysql://localhost:3306/onlinestore";
+    private static final String URL = "jdbc:mysql://localhost:3306/gnoctua";
     private static final String USER = "root";
-    private static final String PASS = "";
+    private static final String PASS = "1234";
     
     public static Connection conexion(){
         if(con==null){
             try{
-                Class.forName("com.mysql.jdbc.Driver");
+                //Class.forName("com.mysql.jdbc.Driver");
                 con = DriverManager.getConnection(URL, USER, PASS);
 
-            }catch(ClassNotFoundException | SQLException e){
+            }catch(SQLException e){
                 e.printStackTrace();
             }
         }
         return con;
+    }
+
+    void getConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     

@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 // CRUD = Create Reaad Update Delete
 public class ArticuloDAO {
@@ -31,7 +33,7 @@ public class ArticuloDAO {
             stm.setString(1,a.getDescripcion());
             stm.setDouble(2,a.getPrecioVenta());
             stm.setDouble(3,a.getGastosEnvio());
-            stm.setInt(4,a.getTiempoEnvio());
+            stm.setDate(4,java.sql.Date.valueOf(a.getTiempoEnvio()));
             
             stm.executeUpdate();
             
@@ -77,7 +79,7 @@ public class ArticuloDAO {
                         rs.getString("descripcion"),
                         rs.getDouble("precioVenta"),
                         rs.getDouble("gastosEnvio"),
-                        rs.getInt("tiempoEnvio")
+                        rs.getDate("tiempoEnvio").toLocalDate()
                 );
             }
             rs.close();
@@ -89,6 +91,32 @@ public class ArticuloDAO {
         return a;
     }
     
+    public List<Articulo> listar(){
+        List<Articulo> l=new ArrayList<>();
+        
+        String sql="select * from Articulo";
+        try(PreparedStatement stm=con.prepareStatement(sql);){
+            
+            ResultSet rs=stm.executeQuery(); // Conjunto de filas que ha obtenido la consulta
+            while(rs.next()){ // next avanza a la siguiente fila ( en esrte caso solo habra una SI EXISTE UN ARTICULO CON ESE CODIGO. Si no hay siguiente fila devuelve false y si la hay debvuelve true
+                Articulo a=new Articulo(
+                        rs.getInt("codigo"),
+                        rs.getString("descripcion"),
+                        rs.getDouble("precioVenta"),
+                        rs.getDouble("gastosEnvio"),
+                        rs.getDate("tiempoEnvio").toLocalDate()
+                );
+                l.add(a);
+            }
+            rs.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return l;
+    }
+    
     public boolean update(Articulo a){
         boolean exito=false;
         
@@ -98,7 +126,7 @@ public class ArticuloDAO {
             stm.setString(1,a.getDescripcion());
             stm.setDouble(2,a.getPrecioVenta());
             stm.setDouble(3,a.getGastosEnvio());
-            stm.setInt(4,a.getTiempoEnvio());
+            stm.setDate(4,java.sql.Date.valueOf(a.getTiempoEnvio()));
             stm.setInt(5,a.getCodigo());
             
             stm.executeUpdate();
