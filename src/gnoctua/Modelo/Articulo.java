@@ -1,4 +1,6 @@
+
 package gnoctua.Modelo;
+
 import java.time.LocalDate;
 
 public class Articulo {

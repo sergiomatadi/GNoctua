@@ -1,9 +1,9 @@
 package gnoctua.Modelo;
 
-import java.util.ArrayList;
+/*import java.util.ArrayList;
 import java.util.List;
 
-/*public class Datos {
+ public class Datos {
  private final List<Cliente> datos = new ArrayList<>();
  private final List<Articulo> art = new ArrayList<>();
  private final List<Pedido> pedidos = new ArrayList<>();

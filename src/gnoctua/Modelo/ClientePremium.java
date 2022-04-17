@@ -1,10 +1,6 @@
 
 package gnoctua.Modelo;
 
-/**
- *Clase hija de Cliente
- *
- */
 
 public class ClientePremium extends Cliente{  
     
@@ -57,6 +53,6 @@ public class ClientePremium extends Cliente{
     */
     @Override
     public String toString() {
-        return "Cliente{ nombre=" + nombre + ", domicilio=" + domicilio + ", email=" + email + ", nif=" + nif + ", tipo de cliente= premium, cuota=" + cuota + ", descuentoEnvio=" + descuentoEnvio +" }";
+        return "nombre=" + nombre + ", domicilio=" + domicilio + ", email=" + email + ", nif=" + nif + ", tipo de cliente= premium, cuota=" + cuota + ", descuentoEnvio=" + descuentoEnvio;
     }
 }
