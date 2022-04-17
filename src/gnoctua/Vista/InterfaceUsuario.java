@@ -86,17 +86,17 @@ public class InterfaceUsuario {
    
     public Articulo introducirArticulo(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Codigo articulo:");
-        int codigo = sc.nextInt();
+        //System.out.println("Codigo articulo:");
+        int codigo = 1;
         System.out.println("Descripción articulo:");
         String descripcion = sc.nextLine();
         System.out.println("PVP:");
-        double precioVenta = sc.nextDouble();
+        double precioVenta = Double.parseDouble(sc.nextLine());
         System.out.println("Gastos de envio");
-        double gastosEnvio = sc.nextDouble();
+        double gastosEnvio = Double.parseDouble(sc.nextLine());
         System.out.println("Tiempo de envio");
         String stiempoEnvio = sc.nextLine();
-        LocalDate tiempoEnvio=LocalDate.parse(stiempoEnvio,DateTimeFormatter.ISO_LOCAL_DATE);
+        LocalDate tiempoEnvio=LocalDate.parse(stiempoEnvio);
         return new Articulo(codigo, descripcion, precioVenta, gastosEnvio, tiempoEnvio);
           
     }
@@ -129,9 +129,9 @@ public class InterfaceUsuario {
     public Pedido introducirPedido(Cliente cliente, Articulo articulo){
         Scanner sc = new Scanner (System.in);
         System.out.println("Numero de pedido:");
-        int numero = sc.nextInt();
+        int numero = Integer.parseInt(sc.nextLine());
         System.out.println("Cantidad");
-        int cantidad =sc.nextInt();
+        int cantidad = Integer.parseInt(sc.nextLine());
         System.out.println("Fecha de pedido");
         String sFechaPedido = sc.nextLine();
         LocalDate fechaPedido=LocalDate.parse(sFechaPedido,DateTimeFormatter.ISO_LOCAL_DATE); 

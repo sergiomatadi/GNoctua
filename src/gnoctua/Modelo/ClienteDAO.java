@@ -1,5 +1,6 @@
 
 package gnoctua.Modelo;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,33 +19,34 @@ public class ClienteDAO extends DAO {
     public Cliente read(String nif){
         Cliente a=null;
         
-        String sql="select nif,nombre,domicilio,email,p.nif as nif_premium,cuota,descuento from Cliente c left join Cliente_Premium p on (c.nif=p.nif) where nif=?";
+        String sql="select c.nombre, c.domicilio, c.email, p.cuota, p.descuento, c.nif  from Cliente as c left join Cliente_Premium as p on c.nif = p.nif where c.nif=?";
         try(PreparedStatement stm=con.prepareStatement(sql);){
             stm.setString(1, nif);
             
-            ResultSet rs=stm.executeQuery(); // Conjunto de filas que ha obtenido la consulta
-            if(rs.next()){ // next avanza a la siguiente fila ( en esrte caso solo habra una SI EXISTE UN ARTICULO CON ESE CODIGO. Si no hay siguiente fila devuelve false y si la hay debvuelve true
-                if(rs.getString("nif_premium")==null){
-                    a=new ClienteStandard(
-                        rs.getString("nombre"),
-                        rs.getString("domicilio"),
-                        rs.getString("email"),
-                        rs.getString("nif")
-                    );
+            try (ResultSet rs = stm.executeQuery() // Conjunto de filas que ha obtenido la consulta
+            ) {
+                if(rs.next()){ // next avanza a la siguiente fila ( en esrte caso solo habra una SI EXISTE UN ARTICULO CON ESE CODIGO. Si no hay siguiente fila devuelve false y si la hay debvuelve true
+                    if(rs.getString("cuota")==null){
+                        a=new ClienteStandard(
+                                rs.getString("nombre"),
+                                rs.getString("domicilio"),
+                                rs.getString("email"),
+                                rs.getString("nif")
+                        );
+                    }
+                    else{
+                        a=new ClientePremium(
+                                rs.getInt("cuota"),
+                                rs.getDouble("descuento"),
+                                rs.getString("nombre"),
+                                rs.getString("domicilio"),
+                                rs.getString("email"),
+                                rs.getString("nif")
+                        );
+                    }
+                    
                 }
-                else{
-                     a=new ClientePremium(
-                        rs.getInt("cuota"),
-                        rs.getDouble("descuento"),
-                        rs.getString("nombre"),
-                        rs.getString("domicilio"),
-                        rs.getString("email"),
-                        rs.getString("nif")
-                    );
-                }
-                
             }
-            rs.close();
         }
         catch(SQLException e){
             e.printStackTrace();
@@ -56,14 +58,15 @@ public class ClienteDAO extends DAO {
     public List<Cliente> listar(){
         List<Cliente> l=new ArrayList<>();
         
-        String sql="select nif,nombre,domicilio,email,p.nif as nif_premium,cuota,descuento from Cliente c left join Cliente_Premium p on (c.nif=p.nif)";
+        //String sql="select nif,nombre,domicilio,email,p.nif as nif_premium,cuota,descuento from Cliente c left join Cliente_Premium p on (c.nif=p.nif)";
+        String sql="select c.nombre, c.domicilio, c.email, p.cuota, p.descuento, c.nif  from Cliente as c left join Cliente_Premium as p on c.nif = p.nif";
         try(PreparedStatement stm=con.prepareStatement(sql);){
            
             
             ResultSet rs=stm.executeQuery(); // Conjunto de filas que ha obtenido la consulta
             while(rs.next()){ // next avanza a la siguiente fila ( en esrte caso solo habra una SI EXISTE UN ARTICULO CON ESE CODIGO. Si no hay siguiente fila devuelve false y si la hay debvuelve true
                 Cliente a=null;
-                if(rs.getString("nif_premium")==null){
+                if(rs.getString("cuota")==null){
                     a=new ClienteStandard(
                         rs.getString("nombre"),
                         rs.getString("domicilio"),

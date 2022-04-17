@@ -13,7 +13,7 @@ import java.util.List;
 // CRUD = Create Reaad Update Delete
 public class ArticuloDAO {
     
-    private Connection con;
+    private final Connection con;
     
     public ArticuloDAO(){
         con=Conexion.conexion();
@@ -41,19 +41,15 @@ public class ArticuloDAO {
             
         }
         catch(SQLException e){
-            e.printStackTrace();
         }
         
         if(exito){
             sql="select last_insert_id() as codigo";
             try(Statement stm=con.createStatement();
                 ResultSet rs=stm.executeQuery(sql);){
-            
                 a.setCodigo(rs.getInt("codigo"));
-                
             }
             catch(SQLException e){
-                e.printStackTrace();
             }
         }
         
@@ -72,17 +68,18 @@ public class ArticuloDAO {
         try(PreparedStatement stm=con.prepareStatement(sql);){
             stm.setInt(1, codigo);
             
-            ResultSet rs=stm.executeQuery(); // Conjunto de filas que ha obtenido la consulta
-            if(rs.next()){ // next avanza a la siguiente fila ( en esrte caso solo habra una SI EXISTE UN ARTICULO CON ESE CODIGO. Si no hay siguiente fila devuelve false y si la hay debvuelve true
-                a=new Articulo(
-                        rs.getInt("codigo"),
-                        rs.getString("descripcion"),
-                        rs.getDouble("precioVenta"),
-                        rs.getDouble("gastosEnvio"),
-                        rs.getDate("tiempoEnvio").toLocalDate()
-                );
+            try (ResultSet rs = stm.executeQuery() // Conjunto de filas que ha obtenido la consulta
+            ) {
+                if(rs.next()){ // next avanza a la siguiente fila ( en esrte caso solo habra una SI EXISTE UN ARTICULO CON ESE CODIGO. Si no hay siguiente fila devuelve false y si la hay debvuelve true
+                    a=new Articulo(
+                            rs.getInt("codigo"),
+                            rs.getString("descripcion"),
+                            rs.getDouble("precioVenta"),
+                            rs.getDouble("gastosEnvio"),
+                            rs.getDate("tiempoEnvio").toLocalDate()
+                    );
+                }
             }
-            rs.close();
         }
         catch(SQLException e){
             e.printStackTrace();

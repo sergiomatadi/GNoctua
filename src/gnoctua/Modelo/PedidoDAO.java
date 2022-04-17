@@ -1,3 +1,4 @@
+
 package gnoctua.Modelo;
 
 import Config.Conexion;
@@ -36,7 +37,7 @@ public class PedidoDAO {
             exito = true;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
         if (exito) {
@@ -47,7 +48,7 @@ public class PedidoDAO {
                 a.setNumero(rs.getInt("numero"));
 
             } catch (SQLException e) {
-                e.printStackTrace();
+               // e.printStackTrace();
             }
         }
 
@@ -61,7 +62,9 @@ public class PedidoDAO {
         try (PreparedStatement stm = con.prepareStatement(sql);) {
             stm.setInt(1, numero);
 
-            ResultSet rs = stm.executeQuery(); // Conjunto de filas que ha obtenido la consulta
+            ResultSet rs = stm.executeQuery();
+            
+            // Conjunto de filas que ha obtenido la consulta
             if (rs.next()) { // next avanza a la siguiente fila ( en esrte caso solo habra una SI EXISTE UN ARTICULO CON ESE CODIGO. Si no hay siguiente fila devuelve false y si la hay debvuelve true
                 ClienteDAO cdao = DAOFactory.createClienteDAO();
                 Cliente c = cdao.read(rs.getString("nif"));

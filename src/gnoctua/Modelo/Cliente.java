@@ -1,3 +1,4 @@
+
 package gnoctua.Modelo;
 
 public abstract class Cliente {
