@@ -7,11 +7,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 // CRUD = Create Reaad Update Delete
 public class ArticuloDAO {
     
-    private Connection con;
+    private final Connection con;
     
     public ArticuloDAO(){
         con=Conexion.conexion();
@@ -31,7 +33,7 @@ public class ArticuloDAO {
             stm.setString(1,a.getDescripcion());
             stm.setDouble(2,a.getPrecioVenta());
             stm.setDouble(3,a.getGastosEnvio());
-            stm.setInt(4,a.getTiempoEnvio());
+            stm.setDate(4,java.sql.Date.valueOf(a.getTiempoEnvio()));
             
             stm.executeUpdate();
             
@@ -39,19 +41,15 @@ public class ArticuloDAO {
             
         }
         catch(SQLException e){
-            e.printStackTrace();
         }
         
         if(exito){
             sql="select last_insert_id() as codigo";
             try(Statement stm=con.createStatement();
                 ResultSet rs=stm.executeQuery(sql);){
-            
                 a.setCodigo(rs.getInt("codigo"));
-                
             }
             catch(SQLException e){
-                e.printStackTrace();
             }
         }
         
@@ -70,15 +68,42 @@ public class ArticuloDAO {
         try(PreparedStatement stm=con.prepareStatement(sql);){
             stm.setInt(1, codigo);
             
+            try (ResultSet rs = stm.executeQuery() // Conjunto de filas que ha obtenido la consulta
+            ) {
+                if(rs.next()){ // next avanza a la siguiente fila ( en esrte caso solo habra una SI EXISTE UN ARTICULO CON ESE CODIGO. Si no hay siguiente fila devuelve false y si la hay debvuelve true
+                    a=new Articulo(
+                            rs.getInt("codigo"),
+                            rs.getString("descripcion"),
+                            rs.getDouble("precioVenta"),
+                            rs.getDouble("gastosEnvio"),
+                            rs.getDate("tiempoEnvio").toLocalDate()
+                    );
+                }
+            }
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return a;
+    }
+    
+    public List<Articulo> listar(){
+        List<Articulo> l=new ArrayList<>();
+        
+        String sql="select * from Articulo";
+        try(PreparedStatement stm=con.prepareStatement(sql);){
+            
             ResultSet rs=stm.executeQuery(); // Conjunto de filas que ha obtenido la consulta
-            if(rs.next()){ // next avanza a la siguiente fila ( en esrte caso solo habra una SI EXISTE UN ARTICULO CON ESE CODIGO. Si no hay siguiente fila devuelve false y si la hay debvuelve true
-                a=new Articulo(
+            while(rs.next()){ // next avanza a la siguiente fila ( en esrte caso solo habra una SI EXISTE UN ARTICULO CON ESE CODIGO. Si no hay siguiente fila devuelve false y si la hay debvuelve true
+                Articulo a=new Articulo(
                         rs.getInt("codigo"),
                         rs.getString("descripcion"),
                         rs.getDouble("precioVenta"),
                         rs.getDouble("gastosEnvio"),
-                        rs.getInt("tiempoEnvio")
+                        rs.getDate("tiempoEnvio").toLocalDate()
                 );
+                l.add(a);
             }
             rs.close();
         }
@@ -86,7 +111,7 @@ public class ArticuloDAO {
             e.printStackTrace();
         }
         
-        return a;
+        return l;
     }
     
     public boolean update(Articulo a){
@@ -98,7 +123,7 @@ public class ArticuloDAO {
             stm.setString(1,a.getDescripcion());
             stm.setDouble(2,a.getPrecioVenta());
             stm.setDouble(3,a.getGastosEnvio());
-            stm.setInt(4,a.getTiempoEnvio());
+            stm.setDate(4,java.sql.Date.valueOf(a.getTiempoEnvio()));
             stm.setInt(5,a.getCodigo());
             
             stm.executeUpdate();

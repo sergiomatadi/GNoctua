@@ -1,16 +1,16 @@
 package gnoctua.Controlador;
 
 import gnoctua.Modelo.Articulo;
-import gnoctua.Modelo.Cliente;
-import gnoctua.Modelo.ClienteEstandard;
-import gnoctua.Modelo.ClientePremium;
-//import gnoctua.Modelo.Datos;
-import gnoctua.Modelo.Pedido;
-import gnoctua.Vista.Interface;
-import java.util.List;
-import gnoctua.Modelo.ClienteDAO;
 import gnoctua.Modelo.ArticuloDAO;
+import gnoctua.Modelo.Cliente;
+import gnoctua.Modelo.ClienteDAO;
+import gnoctua.Modelo.ClientePremium;
+import gnoctua.Modelo.DAOFactory;
+import gnoctua.Modelo.Pedido;
 import gnoctua.Modelo.PedidoDAO;
+import gnoctua.Vista.InterfaceUsuario;
+import java.util.List;
+
 
 
 public class Controlador {
@@ -18,27 +18,14 @@ public class Controlador {
    
     public static void main(String[] args) {
         
-        Interface vista = new Interface();
-        Datos bd = new Datos();
-
-        
-        Cliente cliente = new ClienteEstandard("Pedro", "Calle Roma 1", "pedro@roma.com", "11111111P", "estandard");
-        bd.agregarCliente(cliente);
-        cliente = new ClienteEstandard("Heidi", "Calle Roma 2", "heidi@roma.com", "22222222H", "estandard");
-        bd.agregarCliente(cliente);
-        cliente = new ClienteEstandard("Blanca", "Calle Roma 3", "blanca@roma.com", "33333333B", "estandard");
-        bd.agregarCliente(cliente);
-        cliente = new ClientePremium("30", "20%", "Arnold", "Calle Hollywood 1", "arnold@hollywood.com", "44444444A", "premium");
-        bd.agregarCliente(cliente);
-        cliente = new ClientePremium("30", "20%", "Hamilton", "Calle Hollywood 2", "hamilton@hollywood.com", "55555555H", "premium");
-        bd.agregarCliente(cliente);
-        
-
-        
-        Pedido pedido = new Pedido(1, 3, cliente, articulo, "02-02-2022", "10:30", true);
-        bd.agregarPedido(pedido);
-        pedido = new Pedido(2, 4, cliente, articulo, "02-03-2022", "10:40", true);
-        bd.agregarPedido(pedido);
+        InterfaceUsuario vista = new InterfaceUsuario();
+        Cliente cliente;
+        ClienteDAO cdao;
+        ArticuloDAO adao;
+        PedidoDAO pdao;
+        Articulo articulo=null;
+        int codigoArticulo;
+        Pedido pedido;
         
         int opc = 0;
         do{
@@ -47,44 +34,57 @@ public class Controlador {
                
                 case 1:
                     cliente = vista.lecturaCliente();
-                    bd.agregarCliente(cliente);
+                    cdao=DAOFactory.createClienteDAO(cliente.getClass());
+                    cdao.create(cliente);
                     vista.msg("**********************");
                     vista.msg("Guardado correctamente");
                     vista.msg("**********************");
                     break;
                 case 2: 
-                    List<Cliente> datos = bd.obtenerClientes();
-                    vista.mostrarClientes(datos);
+                    cdao=DAOFactory.createClienteDAO();
+                    List<Cliente> lista=cdao.listar();
+                    vista.listarClientes(lista);
                     break;
                 case 3:
                     articulo = vista.introducirArticulo();
-                    bd.agregarArticulo(articulo);
+                    adao=DAOFactory.createArticuloDAO();
+                    adao.create(articulo);
                     vista.msg("**********************");
                     vista.msg("Guardado correctamente");
                     vista.msg("**********************");
                     break;
                 case 4:
-                    List<Articulo> art = bd.obtnerArticulo();
+                    adao=DAOFactory.createArticuloDAO();
+                    List<Articulo> art = adao.listar();
                     vista.mostrarArticulos(art);
                     break; 
                 case 5: 
                     String nif = vista.introducirNifCliente();
-                    if(bd.existeClienteByNif(nif)) {
-                        cliente = bd.getClienteByNif(nif);
-                    }else {
-                        cliente = vista.lecturaCliente();
+                    cdao=DAOFactory.createClienteDAO();
+                    cliente=cdao.read(nif);
+                    if(cliente!=null){
+                        codigoArticulo = vista.introducirCodigoArticulo();
+                        adao=DAOFactory.createArticuloDAO();
+                        articulo=adao.read(codigoArticulo);
+                        if(articulo!=null){
+                            pedido = vista.introducirPedido(cliente, articulo);
+                            pdao=DAOFactory.createPedidoDAO();
+                            pdao.create(pedido);
+                            vista.msg("**********************");
+                            vista.msg("Guardado correctamente");
+                            vista.msg("**********************");
+                        }
+                        else{
+                            System.out.println("Articulo no encontrado");
+                        }
                     }
-                    String codigoArticulo;
-                    codigoArticulo = vista.introducirCodigoArticulo();
-                    articulo = bd.getArticuloByCodigo(codigoArticulo);
-                    pedido = vista.introducirPedido(cliente, articulo);
-                    bd.agregarPedido(pedido);
-                    vista.msg("**********************");
-                    vista.msg("Guardado correctamente");
-                    vista.msg("**********************");
+                    else{
+                        System.out.println("Cliente no encontrado.");
+                    }                   
                     break;
-                case 6:              
-                    List<Pedido> order = bd.obtenerPedido();
+                case 6:        
+                    pdao=DAOFactory.createPedidoDAO();
+                    List<Pedido> order = pdao.listar();
                     vista.mostrarPedidos(order);
                     break; 
            

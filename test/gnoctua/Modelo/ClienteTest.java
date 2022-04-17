@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
  *
  * @author denis
  */
-public class ClienteTest {
+/*public class ClienteTest {
     
     public ClienteTest() {
     }
@@ -70,4 +70,4 @@ public class ClienteTest {
     public class ClienteImpl extends Cliente {
     }
 
-}
+}*/

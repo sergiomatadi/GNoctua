@@ -1,14 +1,17 @@
+
 package gnoctua.Modelo;
+
+import java.time.LocalDate;
 
 public class Articulo {
     private int codigo;
     private String descripcion;
     private double precioVenta;
     private double gastosEnvio;
-    private int tiempoEnvio;
+    private LocalDate tiempoEnvio;
 
   
-    public Articulo(int codigo, String descripcion, double precioVenta, double gastosEnvio, int tiempoEnvio) {
+    public Articulo(int codigo, String descripcion, double precioVenta, double gastosEnvio, LocalDate tiempoEnvio) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.precioVenta = precioVenta;
@@ -16,9 +19,7 @@ public class Articulo {
         this.tiempoEnvio = tiempoEnvio;
     } 
 
-    public Articulo(String codigo, String descripcion, String precioVenta, String gastosEnvio, String tiempoEnvio) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
 
 
 
@@ -54,11 +55,11 @@ public class Articulo {
         this.gastosEnvio = gastosEnvio;
     }
 
-    public int getTiempoEnvio() {
+    public LocalDate getTiempoEnvio() {
         return tiempoEnvio;
     }
 
-    public void setTiempoEnvio(int tiempoEnvio) {
+    public void setTiempoEnvio(LocalDate tiempoEnvio) {
         this.tiempoEnvio = tiempoEnvio;
     }
 
