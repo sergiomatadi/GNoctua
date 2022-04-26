@@ -18,8 +18,7 @@ public class ClienteDAO extends DAO {
     
     public Cliente read(String nif){
         Cliente a=null;
-        
-        String sql="select c.nombre, c.domicilio, c.email, p.cuota, p.descuento, c.nif  from Cliente as c left join Cliente_Premium as p on c.nif = p.nif where c.nif=?";
+        String sql="";
         try(PreparedStatement stm=con.prepareStatement(sql);){
             stm.setString(1, nif);
             

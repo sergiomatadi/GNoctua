@@ -1,7 +1,12 @@
 
 package gnoctua.Modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name="cliente_standard")
 public class ClienteStandard extends Cliente{
 
     public ClienteStandard(String nombre, String domicilio, String email, String nif) {

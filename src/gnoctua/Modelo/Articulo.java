@@ -1,15 +1,28 @@
 
 package gnoctua.Modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-public class Articulo {
+
+@Entity
+public class Articulo implements Serializable{
+    private static final long serialVersionUID=1L;
+    
+    
+    @Id
     private int codigo;
     private String descripcion;
     private double precioVenta;
     private double gastosEnvio;
     private LocalDate tiempoEnvio;
 
+    
+    public Articulo(){
+        
+    }
   
     public Articulo(int codigo, String descripcion, double precioVenta, double gastosEnvio, LocalDate tiempoEnvio) {
         this.codigo = codigo;

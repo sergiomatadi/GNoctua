@@ -1,12 +1,24 @@
 
 package gnoctua.Modelo;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name="cliente_premium")
 public class ClientePremium extends Cliente{  
+    
+    
     
     private int cuota;
     private double descuentoEnvio;
 
+    public ClientePremium(){
+        
+    }
+    
     public ClientePremium(int cuota, double descuentoEnvio, String nombre, String domicilio, String email, String nif) {
         super(nombre, domicilio, email, nif);
         this.cuota = cuota;
