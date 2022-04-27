@@ -9,13 +9,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 // CRUD = Create Reaad Update Delete
-public class ArticuloDAO {
+public class ArticuloDAO extends DAO {
     
-    private final EntityManager em;
     
-    public ArticuloDAO(){
-        em=Conexion.getEntityManager();
-    }
     
     /**
      * Inserta el articulo en la base de datos

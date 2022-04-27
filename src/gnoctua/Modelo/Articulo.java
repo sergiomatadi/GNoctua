@@ -4,6 +4,8 @@ package gnoctua.Modelo;
 import java.io.Serializable;
 import java.time.LocalDate;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
@@ -13,6 +15,7 @@ public class Articulo implements Serializable{
     
     
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int codigo;
     private String descripcion;
     private double precioVenta;

@@ -13,5 +13,6 @@
     <class>gnoctua.Modelo.Cliente</class>
     <class>gnoctua.Modelo.ClientePremium</class>
     <class>gnoctua.Modelo.ClienteStandard</class>
+    <class>gnoctua.Modelo.Pedido</class>
   </persistence-unit>
 </persistence>

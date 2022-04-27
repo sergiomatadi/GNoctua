@@ -1,20 +1,55 @@
     
 package gnoctua.Modelo;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 
 
-
-public class Pedido {
+@Entity
+public class Pedido implements Serializable{
+    
+    private static final long serialVersionUID=1L;
+    
+    @Id
     private int numero;
     private int cantidad; 
+    
+    @ManyToOne(targetEntity=gnoctua.Modelo.Cliente.class)
+    @JoinTable(
+            name="Cliente",
+            joinColumns={
+                @JoinColumn(name="nif")
+            },
+            inverseJoinColumns={
+                @JoinColumn(name="nif")
+            }
+    )
     private Cliente cliente;
+    
+    @ManyToOne(targetEntity=gnoctua.Modelo.Articulo.class)
+    @JoinTable(
+            name="Articulo",
+            joinColumns={
+                @JoinColumn(name="codigo"),
+            },
+            inverseJoinColumns={
+                @JoinColumn(name="codigo")
+            }
+    )
     private Articulo articulo;
     private LocalDate fechaPedido;
     private LocalTime hora;
     private Boolean enviado;
 
-    
+    public Pedido(){
+        
+    }
     
     public Pedido(int numero, int cantidad, Cliente Cliente, Articulo Articulo, LocalDate fechaPedido, LocalTime hora, Boolean enviado) {
         this.numero = numero;

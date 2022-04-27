@@ -3,6 +3,8 @@ package gnoctua.Modelo;
 
 import javax.persistence.Id;
 import java.io.Serializable;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -19,6 +21,9 @@ sigue el protocolo de java de getters y setters
 @Entity
 @Inheritance(strategy= InheritanceType.JOINED)
 @Table(name="cliente")
+@DiscriminatorColumn(
+        name="tipo_cliente",
+        discriminatorType=DiscriminatorType.INTEGER)
 public abstract class Cliente implements Serializable{
     
     protected String nombre;

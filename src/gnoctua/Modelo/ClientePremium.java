@@ -1,18 +1,22 @@
 
 package gnoctua.Modelo;
 
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name="cliente_premium")
+@DiscriminatorValue("1")
 public class ClientePremium extends Cliente{  
     
     
     
     private int cuota;
+    
+    @Column(name="descuento")
     private double descuentoEnvio;
 
     public ClientePremium(){
