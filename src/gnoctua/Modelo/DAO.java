@@ -2,16 +2,13 @@
 package gnoctua.Modelo;
 
 import Config.Conexion;
-import java.sql.Connection;
+import javax.persistence.EntityManager;
 
-/**
- *
- * @author Usuario
- */
+
 public class DAO {
-    protected Connection con;
+    protected final EntityManager em;
     
     public DAO(){
-        con=Conexion.conexion();
+        em=Conexion.getEntityManager();
     }
 }

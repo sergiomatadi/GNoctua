@@ -3,6 +3,9 @@ package Config;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,10 +15,13 @@ import javax.swing.JOptionPane;
 public class Conexion {
     
     private static Connection con;
+    
+    private static EntityManager em;
+    
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/gnoctua";
     private static final String USER = "root";
-    private static final String PASS = "Enise123";
+    private static final String PASS = "1234";
     
     static{
         try{
@@ -40,6 +46,14 @@ public class Conexion {
     }
 
     void getConnection() {
+    }
+    
+    public static EntityManager getEntityManager(){
+        if(em==null){
+            EntityManagerFactory sf=Persistence.createEntityManagerFactory("GNoctuaPU");
+            em=sf.createEntityManager();
+        }
+        return em;
     }
     
 }

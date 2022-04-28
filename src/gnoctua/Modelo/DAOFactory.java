@@ -4,17 +4,11 @@ package gnoctua.Modelo;
 public class DAOFactory {
     
     public static ClienteDAO createClienteDAO(Class c){
-        if(c==ClienteStandard.class){
-            return new ClienteStandardDAO();
-        }
-        if(c==ClientePremium.class){
-            return new ClientePremiumDAO();
-        }
-        return null;
+        return new ClienteDAO();
     }
     
     public static ClienteDAO createClienteDAO(){
-        return new ClienteStandardDAO();
+        return new ClienteDAO();
     }
     
     public static ArticuloDAO createArticuloDAO(){

@@ -1,11 +1,36 @@
 
 package gnoctua.Modelo;
 
-public abstract class Cliente {
+import javax.persistence.Id;
+import java.io.Serializable;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+
+/*
+Un JavaBean tiene
+Un constructor vacio
+sigue el protocolo de java de getters y setters
+
+*/
+
+@Entity
+@Inheritance(strategy= InheritanceType.JOINED)
+@Table(name="cliente")
+@DiscriminatorColumn(
+        name="tipo_cliente",
+        discriminatorType=DiscriminatorType.INTEGER)
+public abstract class Cliente implements Serializable{
     
     protected String nombre;
     protected String domicilio;
     protected String email;
+    
+    @Id
     protected String nif; 
     
 
@@ -15,6 +40,11 @@ public abstract class Cliente {
     Constructor
     */
    
+    public Cliente(){
+        
+    }
+    
+    
     public Cliente(String nombre, String domicilio, String email, String nif) {
         this.nombre = nombre;
         this.domicilio = domicilio;

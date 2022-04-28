@@ -7,7 +7,6 @@ import gnoctua.Modelo.Cliente;
 import gnoctua.Modelo.ClienteDAO;
 import gnoctua.Modelo.ClienteStandard;
 import gnoctua.Modelo.ClientePremium;
-//import gnoctua.Modelo.Datos;
 import java.util.List;
 import gnoctua.Modelo.Pedido;
 import gnoctua.Modelo.PedidoDAO;
@@ -143,7 +142,7 @@ public class InterfaceUsuario {
         System.out.println("Ha sido enviado? (true, false)");
         String sEnviado=sc.nextLine();
         Boolean enviado = sEnviado.equals("true");
-        return new Pedido (numero, cantidad, cliente, articulo, fechaPedido, hora, enviado );
+        return new Pedido (numero, cantidad, cliente.getNif(), articulo.getCodigo(), fechaPedido, hora, enviado );
                
     }
     
