@@ -2,8 +2,6 @@
 package gnoctua.Modelo;
 
 import Config.Conexion;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;

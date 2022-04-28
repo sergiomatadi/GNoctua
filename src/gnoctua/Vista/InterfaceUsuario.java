@@ -7,7 +7,6 @@ import gnoctua.Modelo.Cliente;
 import gnoctua.Modelo.ClienteDAO;
 import gnoctua.Modelo.ClienteStandard;
 import gnoctua.Modelo.ClientePremium;
-//import gnoctua.Modelo.Datos;
 import java.util.List;
 import gnoctua.Modelo.Pedido;
 import gnoctua.Modelo.PedidoDAO;
