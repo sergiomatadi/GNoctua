@@ -141,7 +141,7 @@ public class InterfaceUsuario {
         System.out.println("Ha sido enviado? (true, false)");
         String sEnviado=sc.nextLine();
         Boolean enviado = sEnviado.equals("true");
-        return new Pedido (numero, cantidad, cliente, articulo, fechaPedido, hora, enviado );
+        return new Pedido (numero, cantidad, cliente.getNif(), articulo.getCodigo(), fechaPedido, hora, enviado );
                
     }
     

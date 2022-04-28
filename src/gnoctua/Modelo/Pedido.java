@@ -3,12 +3,8 @@ package gnoctua.Modelo;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -19,30 +15,8 @@ public class Pedido implements Serializable{
     @Id
     private int numero;
     private int cantidad; 
-    
-    @ManyToOne(targetEntity=gnoctua.Modelo.Cliente.class)
-    @JoinTable(
-            name="Cliente",
-            joinColumns={
-                @JoinColumn(name="nif")
-            },
-            inverseJoinColumns={
-                @JoinColumn(name="nif")
-            }
-    )
-    private Cliente cliente;
-    
-    @ManyToOne(targetEntity=gnoctua.Modelo.Articulo.class)
-    @JoinTable(
-            name="Articulo",
-            joinColumns={
-                @JoinColumn(name="codigo"),
-            },
-            inverseJoinColumns={
-                @JoinColumn(name="codigo")
-            }
-    )
-    private Articulo articulo;
+    private String nif;
+    private int codigo;
     private LocalDate fechaPedido;
     private LocalTime hora;
     private Boolean enviado;
@@ -51,11 +25,11 @@ public class Pedido implements Serializable{
         
     }
     
-    public Pedido(int numero, int cantidad, Cliente Cliente, Articulo Articulo, LocalDate fechaPedido, LocalTime hora, Boolean enviado) {
+    public Pedido(int numero, int cantidad, String nif, int codigo, LocalDate fechaPedido, LocalTime hora, Boolean enviado) {
         this.numero = numero;
         this.cantidad = cantidad;
-        this.cliente = Cliente;
-        this.articulo = Articulo;
+        this.nif = nif;
+        this.codigo = codigo;
         this.fechaPedido = fechaPedido;
         this.hora = hora;
         this.enviado = enviado;
@@ -79,20 +53,34 @@ public class Pedido implements Serializable{
     }
 
     public Cliente getCliente() {
-        return cliente;
+        ClienteDAO dao=DAOFactory.createClienteDAO();
+        Cliente c=dao.read(nif);
+        return c;
     }
 
-    public void setCliente(Cliente Cliente) {
-        this.cliente = Cliente;
-    }
 
     public Articulo getArticulo() {
-        return articulo;
+        ArticuloDAO dao=DAOFactory.createArticuloDAO();
+        Articulo a=dao.read(codigo);
+        return a;
     }
 
-    public void setArticulo(Articulo Articulo) {
-        this.articulo = Articulo;
+    public String getNif() {
+        return nif;
     }
+
+    public void setNif(String nif) {
+        this.nif = nif;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
 
     public LocalDate getFechaPedido() {
         return fechaPedido;
@@ -126,6 +114,8 @@ public class Pedido implements Serializable{
     
     @Override
     public String toString() {
+        Cliente cliente=getCliente();
+        Articulo articulo=getArticulo();
         String text ="Pedido{"; 
         text += "  Numero=" + numero;
         text += ", Cantidad=" + cantidad;
