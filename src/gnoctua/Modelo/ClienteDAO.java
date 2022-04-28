@@ -38,7 +38,7 @@ public class ClienteDAO extends DAO {
         List<Cliente> l1=q1.getResultList();
         
         Query q2=em.createQuery("select c from ClienteStandard  c");
-        List<Cliente> l2=q1.getResultList();
+        List<Cliente> l2=q2.getResultList();
         
         l.addAll(l1);
         l.addAll(l2);
